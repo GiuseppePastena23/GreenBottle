@@ -7,7 +7,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./configurationFiles/databaseInit.sql:/docker-entrypoint-initdb.d/databaseInit.sql:ro
+      - ./configurationFiles/databaseInit.sql:/docker-entrypoint-initdb.d/01-databaseInit.sql:ro
+      - ./configurationFiles/databasePopulator.sql:/docker-entrypoint-initdb.d/02-databasePopulator.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
       interval: 10s
