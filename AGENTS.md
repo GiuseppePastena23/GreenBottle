@@ -5,33 +5,8 @@ Maven is the only build tool. There is no lint/format/typecheck task:
 `mvn test` is the whole verification gate. `google_checks.xml` is a stock Checkstyle file that is
 **not** wired into the build — ignore it.
 
-## Commands
-
-- Build + all tests: `.\mvnw.cmd -B package` (Windows) / `mvn -B package` (what CI runs)
-- Single test class: `.\mvnw.cmd -B test -Dtest=UtentiTest`
-- Run app: `.\mvnw.cmd spring-boot:run`, artifact is `target/greenbottle-0.0.1-SNAPSHOT.jar`
-- Tests need MySQL credentials overridden (see below):
-  `.\mvnw.cmd -B test -Dspring.datasource.password=peppe`
-
-## Database prerequisites (tests fail without this)
-
-- Tests hit a **real MySQL 8** at `localhost:3306`, database `greenbottledb`. There is no
-  H2/testcontainers fallback: `@SpringBootTest` boots the real datasource and `dataJPATests`
-  use `@AutoConfigureTestDatabase(replace = NONE)`.
-- Credentials are hardcoded in `src/main/resources/application.properties` as `root`/`root`
-  (commented "Only for testing"). On this machine the local root password is `peppe`
-  (see `start.bat`), so pass `-Dspring.datasource.password=peppe` or tests fail with a
-  misleading `Unable to determine Dialect without JDBC metadata`.
-- Schema comes from Hibernate `ddl-auto=update`. `configurationFiles/databaseInit.sql` creates
-  the empty schema; `configurationFiles/databasePopulator.sql` seeds demo data.
-- **Tests are not isolated from DB state and write real rows.** Running the populator before
-  tests makes `dataJPATests` (`AbbonamentoTest`, `CatalogoTest`, `OrdineTest`) fail with
-  `Duplicate entry ... PRIMARY`: seed rows occupy IDs 1..N while the `*_seq` counters stay at 1.
-  Re-running advances the counters; the reliable baseline is a DB with only the schema
-  (`databaseInit.sql` or empty). CI (`.github/workflows/maven.yml`) creates an empty
-  `greenbottledb` (root/root) and runs `mvn -B package` on push/PR to `master` — that is the
-  green baseline (50 tests).
-- `start.bat` is a personal local shortcut (hardcoded path + password), not a project entry point.
+JMH microbenchmarks live in `src/benchmarks/java`, compiled and shaded **only** under the
+`benchmarks` Maven profile (see section below); the default build and CI never see them.
 
 ## Architecture
 
