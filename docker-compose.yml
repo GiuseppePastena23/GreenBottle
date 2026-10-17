@@ -30,12 +30,12 @@ services:
     ports:
       - "8080:8080"
 
-  ngrok:
-    image: ngrok/ngrok:latest
+  cloudflared:
+    image: cloudflare/cloudflared:latest
     restart: unless-stopped
-    command: http app:8080 --log stdout
+    command: tunnel --no-autoupdate run
     environment:
-      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
     depends_on:
       - app
 
