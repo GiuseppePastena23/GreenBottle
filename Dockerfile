@@ -1,17 +1,25 @@
 # syntax=docker/dockerfile:1
 
 # ---- Build stage ----
-FROM maven:3.9-eclipse-temurin-21 AS build
+FROM eclipse-temurin:21-jdk AS build
 
 WORKDIR /build
 
+# Tools used by the Maven Wrapper (mvnw) to download and unpack Maven.
+RUN apt-get update && apt-get install -y --no-install-recommends curl unzip ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# The wrapper is committed without the executable bit, so chmod it explicitly.
+COPY mvnw .
+COPY .mvn .mvn
+
 # Cache dependencies separately from sources.
 COPY pom.xml .
-RUN mvn -B -q dependency:go-offline
+RUN chmod +x mvnw && ./mvnw -B -q dependency:go-offline
 
 # Build the executable Spring Boot jar (tests run in CI, not in the image build).
 COPY src ./src
-RUN mvn -B package -DskipTests
+RUN ./mvnw -B package -DskipTests
 
 # ---- Runtime stage ----
 FROM eclipse-temurin:21-jre
