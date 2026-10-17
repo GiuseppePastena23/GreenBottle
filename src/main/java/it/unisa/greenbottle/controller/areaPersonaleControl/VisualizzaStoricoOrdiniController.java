@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("areaPersonale/visualizzaStoricoOrdini")
 public class VisualizzaStoricoOrdiniController {
 
-  private final String visualizzaStoricoOrdiniView = "/AreaPersonaleView/StoricoOrdini";
+  private final String visualizzaStoricoOrdiniView = "AreaPersonaleView/StoricoOrdini";
 
   @Autowired
   private OrdineDao ordineDao;

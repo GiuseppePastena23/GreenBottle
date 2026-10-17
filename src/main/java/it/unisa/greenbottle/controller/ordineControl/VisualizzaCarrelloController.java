@@ -15,7 +15,7 @@ public class VisualizzaCarrelloController {
   @Autowired
   private SessionCarrello sessionCarrello;
 
-  private static final String CARRELLO_VIEW = "/OrdineView/Carrello";
+  private static final String CARRELLO_VIEW = "OrdineView/Carrello";
 
   /**
    * Metodo per la visualizzazione del carrello.

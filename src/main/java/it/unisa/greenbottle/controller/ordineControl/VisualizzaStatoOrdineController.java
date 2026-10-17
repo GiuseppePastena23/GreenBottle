@@ -27,8 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/areaPersonale/visualizzaStatoOrdine")
 public class VisualizzaStatoOrdineController {
 
-  private final String homeView = "/home";
-  private final String visualizzaStatoOrdineView = "/OrdineView/VisualizzaStatoOrdine";
+  private final String visualizzaStatoOrdineView = "OrdineView/VisualizzaStatoOrdine";
 
   @Autowired
   private OrdineDao ordineDao;
@@ -101,11 +100,11 @@ public class VisualizzaStatoOrdineController {
 
     Optional<Ordine> optOrdine = ordineDao.findOrdineById(id);
     if (optOrdine.isEmpty()) {
-      return "/error";
+      return "error";
     }
     Ordine ordine = optOrdine.get();
     if (!ordine.getCliente().equals(cliente)) {
-      return "/error";
+      return "error";
     }
 
     composizioneDao.deleteAll(composizioneDao.findComposizioneByOrdine(ordine));

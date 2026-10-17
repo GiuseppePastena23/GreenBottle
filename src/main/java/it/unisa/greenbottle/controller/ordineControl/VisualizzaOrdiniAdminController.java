@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/visualizzaOrdini")
 public class VisualizzaOrdiniAdminController {
 
-  private final String visualizzaOrdiniView = "/OrdineView/VisualizzaOrdiniAdmin";
+  private final String visualizzaOrdiniView = "OrdineView/VisualizzaOrdiniAdmin";
 
   @Autowired
   private ComposizioneDao composizioneDao;
