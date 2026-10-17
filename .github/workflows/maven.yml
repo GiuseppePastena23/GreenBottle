@@ -1,41 +1,59 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
+# CI: build & test on GitHub-hosted runners.
+# CD: rebuild and restart the Docker Compose stack on a self-hosted Debian/ARM64
+#     runner (Raspberry Pi) whenever the dev branch is updated.
+name: Java CI/CD with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "dev" ]
 
 env:
   DB_DATABASE: greenbottledb
   DB_USER: root
   DB_PASSWORD: root
 
+concurrency:
+  group: greenbottle-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
 
   build:
-
+    name: Build & test
     runs-on: ubuntu-latest
-
     steps:
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+
+  deploy:
+    name: Deploy on Raspberry Pi
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+    runs-on: [ self-hosted, linux, ARM64 ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write .env
+        run: |
+          cat > .env <<EOF
+          MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+          SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+          NGROK_AUTHTOKEN=${{ secrets.NGROK_AUTHTOKEN }}
+          EOF
+      - name: Deploy with Docker Compose
+        run: |
+          docker compose up -d --build
+          docker compose ps
