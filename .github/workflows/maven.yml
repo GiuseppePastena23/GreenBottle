@@ -40,11 +40,15 @@ jobs:
           chmod +x mvnw
           ./mvnw -B package --file pom.xml
 
-  deploy:
-    name: Deploy on Raspberry Pi
+   deploy:
+    name: Deploy on ${{ matrix.runner }}
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
-    runs-on: [ self-hosted, linux, ARM64 ]
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ pi, pi2 ]
+    runs-on: [ self-hosted, "${{ matrix.runner }}" ]
     steps:
       - uses: actions/checkout@v4
       - name: Write .env
@@ -53,7 +57,7 @@ jobs:
           MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
           SPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }}
           SPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }}
-          CLOUDFLARE_TUNNEL_TOKEN=${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
+          CLOUDFLARE_TUNNEL_TOKEN=${{ matrix.runner == 'pi' && secrets.CLOUDFLARE_TUNNEL_TOKEN || secrets.CLOUDFLARE_TUNNEL_TOKEN_PI2 }}
           EOF
       - name: Deploy with Docker Compose
         run: |
