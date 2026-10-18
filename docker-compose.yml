@@ -11,10 +11,10 @@ services:
       - ./configurationFiles/databasePopulator.sql:/docker-entrypoint-initdb.d/02-databasePopulator.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
+      interval: 15s
+      timeout: 10s
+      retries: 40
+      start_period: 600s
 
   app:
     build: .
