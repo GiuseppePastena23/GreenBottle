@@ -60,6 +60,10 @@ Follow these steps:
 8. Optionally, you can run configurationFiles/databasePopulator.sql to populate the Database with default entities;
 9. Open your browser at `localhost:8080`.
 
+## Running Benchmarks
+
+> java "-Djmh.ignoreLock=true" -jar target/greenbottle-0.0.1-SNAPSHOT-benchmarks.jar
+
 ## Built With
 
 * [Java](https://jdk.java.net/21/) - The programming language used for the back-end development.

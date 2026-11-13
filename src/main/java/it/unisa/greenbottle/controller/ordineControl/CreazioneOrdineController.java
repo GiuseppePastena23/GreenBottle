@@ -192,8 +192,8 @@ public class CreazioneOrdineController {
       httpServletResponse.sendError(HttpServletResponse.SC_BAD_REQUEST,
           "Descrizione supporto non inserita.");
       return "error";
-    } else if (!isSupporto &&
-        !descrizioneSupporto.isBlank()) {
+    } else if (!isSupporto
+            && !descrizioneSupporto.isBlank()) {
       model.addAttribute("errore",
           "Descrizione presente, ma non si desidera richiedere supporto aggiuntivo.");
       httpServletResponse.sendError(HttpServletResponse.SC_BAD_REQUEST,
