@@ -1,0 +1,161 @@
+# CI/CD GreenBottle.
+# CI: compila e testa ogni push e ogni pull request (runner GitHub-hosted).
+# CD: ricostruisce e riavvia lo stack Docker Compose sul runner self-hosted
+#     Debian/ARM64 (Raspberry Pi) quando sse-improvements riceve un push.
+name: CI/CD
+
+on:
+  push:
+    branches: [ sse-improvements, main ]
+  pull_request:
+    branches: [ sse-improvements, main ]
+  workflow_dispatch:
+
+# Privilegio minimo: il workflow legge soltanto il repository.
+permissions:
+  contents: read
+
+# Un solo run per branch/PR: le PR annullano i run precedenti, i push su
+# sse-improvements (che deployano) vengono serializzati e mai interrotti.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  JAVA_VERSION: '21'
+  # Chiave AES fittizia (32 caratteri) usata solo dai test quando il secret
+  # non è disponibile, cioè sulle pull request da fork.
+  TEST_ENCRYPTION_KEY: '0123456789abcdef0123456789abcdef'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  build:
+    name: Build & test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    # MySQL effimero con le credenziali attese da application.properties
+    # (greenbottledb / root / root). Non sono secret: restano leggibili e
+    # permettono di eseguire i test anche sulle PR aperte da fork.
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: greenbottledb
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: temurin
+          cache: maven
+
+      # Non si usa il client mysql dell'host: si interroga il container del
+      # service, che è l'unico modo affidabile finché l'healthcheck non passa.
+      - name: Wait for MySQL
+        run: |
+          for attempt in $(seq 1 30); do
+            if docker exec "${{ job.services.mysql.id }}" mysqladmin ping -uroot -proot --silent; then
+              echo "MySQL is ready."
+              exit 0
+            fi
+            echo "Waiting for MySQL ($attempt/30)..."
+            sleep 5
+          done
+          echo "::error::MySQL non è diventato pronto in tempo."
+          exit 1
+
+      - name: Build & test
+        env:
+          GREENBOTTLE_SECURITY_ENCRYPTION_KEY: ${{ secrets.GREENBOTTLE_SECURITY_ENCRYPTION_KEY || env.TEST_ENCRYPTION_KEY }}
+        run: |
+          chmod +x mvnw
+          ./mvnw -B -ntp verify
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  deploy:
+    name: Deploy (Raspberry Pi)
+    needs: build
+    # Branch di deploy: se in futuro cambia (es. si passa a main), va aggiornato qui.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/sse-improvements'
+    runs-on: [ self-hosted, linux, arm64 ]
+    timeout-minutes: 30
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required secrets
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          GREENBOTTLE_SECURITY_ENCRYPTION_KEY: ${{ secrets.GREENBOTTLE_SECURITY_ENCRYPTION_KEY }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in MYSQL_ROOT_PASSWORD GREENBOTTLE_SECURITY_ENCRYPTION_KEY; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::Secret mancante: $name"
+              missing=1
+            fi
+          done
+          # L'app rifiuta di partire con una chiave di lunghezza diversa da 16/24/32.
+          case "${#GREENBOTTLE_SECURITY_ENCRYPTION_KEY}" in
+            16|24|32) ;;
+            *) echo "::error::GREENBOTTLE_SECURITY_ENCRYPTION_KEY deve essere di 16, 24 o 32 caratteri."
+               missing=1 ;;
+          esac
+          exit "$missing"
+
+      # I secret passano dall'ambiente della shell: così non finiscono mai
+      # interpolati riga per riga nel comando (log più puliti e nessun leak).
+      - name: Write .env
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+          CLOUDFLARE_TUNNEL_TOKEN: ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
+          GREENBOTTLE_SECURITY_ENCRYPTION_KEY: ${{ secrets.GREENBOTTLE_SECURITY_ENCRYPTION_KEY }}
+        run: |
+          set -euo pipefail
+          umask 077
+          cat > .env <<EOF
+          MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME:-root}
+          SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD:-}
+          CLOUDFLARE_TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+          GREENBOTTLE_SECURITY_ENCRYPTION_KEY=${GREENBOTTLE_SECURITY_ENCRYPTION_KEY}
+          EOF
+          chmod 600 .env
+
+      - name: Deploy with Docker Compose
+        run: |
+          set -euo pipefail
+          docker compose config --quiet
+          docker compose up -d --build --remove-orphans
+          docker image prune -f
+          docker compose ps
