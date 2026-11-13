@@ -32,6 +32,9 @@ public class LoginAdminController {
   @Autowired
   private SessionAdmin sessionAdmin;
 
+  @Autowired
+  private EncryptorUtil encryptorUtil;
+
   /**
    * Metodo per ottenere la pagina di login dell'admin.
    *
@@ -74,8 +77,8 @@ public class LoginAdminController {
       return loginView;
     }
 
-    String encryptedPassword = EncryptorUtil.encrypt(password);
-    if (!a.get().getPassword().equals(encryptedPassword)) {
+    String storedPassword = a.get().getPassword();
+    if (!password.equals(encryptorUtil.decrypt(storedPassword))) {
       model.addAttribute("correctPassword", false);
       return loginView;
     }

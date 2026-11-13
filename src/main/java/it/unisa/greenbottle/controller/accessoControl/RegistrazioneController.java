@@ -30,6 +30,9 @@ public class RegistrazioneController {
   @Autowired
   private ClienteDao clienteDao;
 
+  @Autowired
+  private EncryptorUtil encryptorUtil;
+
   /**
    * Metodo per ottenere la pagina di registrazione.
    *
@@ -68,7 +71,7 @@ public class RegistrazioneController {
       return "error"; // Visualizza la vista con il messaggio di errore
     }
 
-    String encryptedPassword = EncryptorUtil.encrypt(registrazioneForm.getPassword());
+    String encryptedPassword = encryptorUtil.encrypt(registrazioneForm.getPassword());
     String email = registrazioneForm.getEmail();
     String nome = registrazioneForm.getNome();
     String cognome = registrazioneForm.getCognome();

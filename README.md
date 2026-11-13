@@ -53,12 +53,20 @@ Follow these steps:
 2. Download Java SE 21;
 3. Clone this repo;
 4. Go into GreenBottle directory;
-5. Run `./mwnw (or .\mvnw.cmd if you're on windows) clean package` and wait for maven to build;
-6. Open and run configurationFiles/databaseInit.sql on MySQL workbench;
-7. Run `java -jar target/GreenBottle-1.0.jar –spring.datasource.password="<password_database>"
+5. Copy `.env.example` to `.env` and fill in `GREENBOTTLE_SECURITY_ENCRYPTION_KEY`
+   (16, 24 or 32 characters, e.g. `openssl rand -hex 16`). `.env` is gitignored and is
+   loaded automatically both by Spring Boot and by Docker Compose; an exported
+   `GREENBOTTLE_SECURITY_ENCRYPTION_KEY` variable takes precedence over it.
+   Without the key the application refuses to start;
+6. Run `./mwnw (or .\mvnw.cmd if you're on windows) clean package` and wait for maven to build;
+7. Open and run configurationFiles/databaseInit.sql on MySQL workbench;
+8. Run `java -jar target/GreenBottle-1.0.jar –spring.datasource.password="<password_database>"
    –spring.datasource.username="<username_database>"`;
-8. Optionally, you can run configurationFiles/databasePopulator.sql to populate the Database with default entities;
-9. Open your browser at `localhost:8080`.
+9. Optionally, you can run configurationFiles/databasePopulator.sql to populate the Database with default entities;
+10. Open your browser at `localhost:8080`.
+
+With Docker Compose, copy `.env.example` to `.env`, fill in the values and run
+`docker compose up -d --build`.
 
 ## Built With
 
