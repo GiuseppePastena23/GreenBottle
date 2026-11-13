@@ -75,7 +75,6 @@ public class RenderImg {
 
     final HttpHeaders headers = new HttpHeaders();
     headers.add(HttpHeaders.CONTENT_TYPE, "image/jpeg");
-    headers.add(HttpHeaders.CONTENT_LENGTH, String.valueOf(image.length));
     headers.add(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL);
     return new ResponseEntity<>(image, headers, HttpStatus.OK);
   }
