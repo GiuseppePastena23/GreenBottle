@@ -1,0 +1,15 @@
+package it.unisa.greenbottle.storage.abbonamento.dao;
+
+import it.unisa.greenbottle.storage.abbonamento.entity.Abbonamento;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+/**
+ * Interfaccia per la gestione dei dati degli abbonamenti.
+ */
+public interface AbbonamentoDao extends JpaRepository<Abbonamento, Long> {
+  Optional<Abbonamento> findAbbonamentoById(final Long id);
+
+  List<Abbonamento> findAbbonamentoByTipo(final Abbonamento.TipoAbbonamento tipoAbbonamento);
+}

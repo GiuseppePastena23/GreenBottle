@@ -5,12 +5,12 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import it.unisa.greenbottle.controller.abbonamentoControl.form.AbbonamentoForm;
-import it.unisa.greenbottle.controller.accessoControl.util.SessionCliente;
-import it.unisa.greenbottle.storage.abbonamentoStorage.dao.AbbonamentoDao;
-import it.unisa.greenbottle.storage.abbonamentoStorage.entity.Abbonamento;
-import it.unisa.greenbottle.storage.accessoStorage.dao.ClienteDao;
-import it.unisa.greenbottle.storage.accessoStorage.entity.Cliente;
+import it.unisa.greenbottle.controller.abbonamento.form.AbbonamentoForm;
+import it.unisa.greenbottle.controller.accesso.util.SessionCliente;
+import it.unisa.greenbottle.storage.abbonamento.dao.AbbonamentoDao;
+import it.unisa.greenbottle.storage.abbonamento.entity.Abbonamento;
+import it.unisa.greenbottle.storage.accesso.dao.ClienteDao;
+import it.unisa.greenbottle.storage.accesso.entity.Cliente;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SottoscrizioneAbbonamentoTest {
+class SottoscrizioneAbbonamentoTest {
 
   @MockitoBean
   private SessionCliente sessionCliente;
@@ -47,7 +47,7 @@ public class SottoscrizioneAbbonamentoTest {
    * Setup per il test.
    */
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Cliente cliente = new Cliente();
     when(sessionCliente.getCliente()).thenReturn(Optional.of(cliente));
     when(clienteDao.findClienteById(1L)).thenReturn(Optional.of(cliente));
@@ -63,31 +63,31 @@ public class SottoscrizioneAbbonamentoTest {
 
 
   @Test
-  public void nomeNonValido() throws Exception {
+  void nomeNonValido() throws Exception {
     testSottoscriviAbbonamento("C32", "5267893664829376", "11/27", "337",
         status().isBadRequest(), "Nome del titolare della carta non valido.");
   }
 
   @Test
-  public void numeroCartaNonValido() throws Exception {
+  void numeroCartaNonValido() throws Exception {
     testSottoscriviAbbonamento("Giancarlo Filippi", "00000000000000000", "11/27", "337",
         status().isBadRequest(), "Numero di carta non valido.");
   }
 
   @Test
-  public void dataNonValido() throws Exception {
+  void dataNonValido() throws Exception {
     testSottoscriviAbbonamento("Giancarlo Filippi", "5267893664829376", "99/99", "337",
         status().isBadRequest(), "Data di scadenza della carta non valida.");
   }
 
   @Test
-  public void cvvNonValido() throws Exception {
+  void cvvNonValido() throws Exception {
     testSottoscriviAbbonamento("Giancarlo Filippi", "5267893664829376", "11/27", "00C",
         status().isBadRequest(), "CVV non valido.");
   }
 
   @Test
-  public void abbonamentoSottoscritto() throws Exception {
+  void abbonamentoSottoscritto() throws Exception {
     Abbonamento abbonamento = new Abbonamento();
     when(abbonamentoDao.findAbbonamentoById(1L)).thenReturn(Optional.of(abbonamento));
     testSottoscriviAbbonamento("Giancarlo Filippi", "5267893664829376", "11/27", "337",
@@ -106,7 +106,7 @@ public class SottoscrizioneAbbonamentoTest {
    * @param expectedMessage messaggio atteso
    * @throws Exception eccezione
    */
-  public void testSottoscriviAbbonamento(String nomeTitolare, String numeroCarta,
+  void testSottoscriviAbbonamento(String nomeTitolare, String numeroCarta,
                                          String dataScadenza, String cvv,
                                          ResultMatcher resultMatcher, String expectedMessage)
       throws Exception {

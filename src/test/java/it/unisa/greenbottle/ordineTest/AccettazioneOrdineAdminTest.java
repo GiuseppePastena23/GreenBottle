@@ -6,11 +6,11 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import it.unisa.greenbottle.controller.accessoControl.util.SessionAdmin;
-import it.unisa.greenbottle.storage.accessoStorage.entity.Admin;
-import it.unisa.greenbottle.storage.accessoStorage.entity.Cliente;
-import it.unisa.greenbottle.storage.ordineStorage.dao.OrdineDao;
-import it.unisa.greenbottle.storage.ordineStorage.entity.Ordine;
+import it.unisa.greenbottle.controller.accesso.util.SessionAdmin;
+import it.unisa.greenbottle.storage.accesso.entity.Admin;
+import it.unisa.greenbottle.storage.accesso.entity.Cliente;
+import it.unisa.greenbottle.storage.ordine.dao.OrdineDao;
+import it.unisa.greenbottle.storage.ordine.entity.Ordine;
 import java.sql.Timestamp;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AccettazioneOrdineAdminTest {
+class AccettazioneOrdineAdminTest {
   @Autowired
   private MockMvc mockMvc;
 
@@ -37,12 +37,12 @@ public class AccettazioneOrdineAdminTest {
   private OrdineDao ordineDao;
 
   @Test
-  public void idNonValido() throws Exception {
+  void idNonValido() throws Exception {
     test(-1L, status().isBadRequest(), "Id non valido.");
   }
 
   @Test
-  public void idNonPresente() throws Exception {
+  void idNonPresente() throws Exception {
     Cliente cliente = new Cliente();
     final String testId = "999";
     Ordine ordine =
@@ -68,7 +68,7 @@ public class AccettazioneOrdineAdminTest {
   }
 
   @Test
-  public void idValido() throws Exception {
+  void idValido() throws Exception {
     test(1L, status().isOk(), null);
   }
 

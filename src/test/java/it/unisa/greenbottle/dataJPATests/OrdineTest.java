@@ -1,16 +1,20 @@
 package it.unisa.greenbottle.dataJPATests;
 
-import it.unisa.greenbottle.storage.accessoStorage.dao.ClienteDao;
-import it.unisa.greenbottle.storage.accessoStorage.entity.Cliente;
-import it.unisa.greenbottle.storage.areaPersonaleStorage.dao.IndirizzoDao;
-import it.unisa.greenbottle.storage.areaPersonaleStorage.entity.Indirizzo;
-import it.unisa.greenbottle.storage.catalogoStorage.dao.ProdottoDao;
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Categoria;
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Prodotto;
-import it.unisa.greenbottle.storage.ordineStorage.dao.OrdineDao;
-import it.unisa.greenbottle.storage.ordineStorage.entity.Composizione;
-import it.unisa.greenbottle.storage.ordineStorage.entity.Ordine;
-import it.unisa.greenbottle.storage.ordineStorage.entity.OrdineDirector;
+import it.unisa.greenbottle.storage.accesso.dao.ClienteDao;
+import it.unisa.greenbottle.storage.accesso.entity.Cliente;
+import it.unisa.greenbottle.storage.areapersonale.dao.IndirizzoDao;
+import it.unisa.greenbottle.storage.areapersonale.entity.Indirizzo;
+import it.unisa.greenbottle.storage.catalogo.dao.ProdottoDao;
+import it.unisa.greenbottle.storage.catalogo.entity.Categoria;
+import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
+import it.unisa.greenbottle.storage.ordine.dao.OrdineDao;
+import it.unisa.greenbottle.storage.ordine.entity.Composizione;
+import it.unisa.greenbottle.storage.ordine.entity.Ordine;
+import it.unisa.greenbottle.storage.ordine.entity.OrdineDirector;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +30,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class OrdineTest {
+class OrdineTest {
 
   @Autowired
   private OrdineDao ordineDao;
@@ -64,7 +68,7 @@ public class OrdineTest {
   private final Set<Composizione> composizioniTest = new HashSet<>();
 
   @Test
-  public void createOrdine() {
+  void createOrdine() {
 
     clienteDao.save(clienteTest);
     indirizzoDao.save(indirizzoTest);
@@ -89,13 +93,12 @@ public class OrdineTest {
 
     Optional<Ordine> o2 = ordineDao.findById(ordineTest.getId());
 
-    assert o2.isPresent() && ordineTest.equals(o2.get());
-
-    System.out.println("Saved Ordine: " + o2.get());
+    assertTrue(o2.isPresent());
+    assertEquals(ordineTest, o2.get());
   }
 
   @Test
-  public void createAndVerifyOrdineAndComposizione() {
+  void createAndVerifyOrdineAndComposizione() {
     clienteDao.save(clienteTest);
     indirizzoDao.save(indirizzoTest);
     prodottoDao.saveAll(prodottiTest);
@@ -119,19 +122,16 @@ public class OrdineTest {
     ordineDao.save(ordineTest);
 
     Optional<Ordine> retrievedOrdine = ordineDao.findById(ordineTest.getId());
-    assert retrievedOrdine.isPresent();
+    assertTrue(retrievedOrdine.isPresent());
 
     Ordine savedOrdine = retrievedOrdine.get();
 
-    assert savedOrdine.getComposizioni() != null && !savedOrdine.getComposizioni().isEmpty();
-    System.out.println("Retrieved Composizioni: " + savedOrdine.getComposizioni());
+    assertFalse(savedOrdine.getComposizioni().isEmpty());
+    assertEquals(2, savedOrdine.getComposizioni().size());
 
     for (Composizione composizione : savedOrdine.getComposizioni()) {
       Prodotto prodotto = composizione.getProdotto();
-      assert prodottiTest.contains(prodotto);
-
-      System.out.println("Composizione: " + composizione);
-      System.out.println("Product in Composizione: " + prodotto);
+      assertTrue(prodottiTest.contains(prodotto));
     }
   }
 }

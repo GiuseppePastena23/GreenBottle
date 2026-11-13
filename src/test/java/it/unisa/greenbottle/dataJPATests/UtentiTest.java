@@ -1,10 +1,13 @@
 package it.unisa.greenbottle.dataJPATests;
 
 
-import it.unisa.greenbottle.storage.accessoStorage.dao.AdminDao;
-import it.unisa.greenbottle.storage.accessoStorage.dao.ClienteDao;
-import it.unisa.greenbottle.storage.accessoStorage.entity.Admin;
-import it.unisa.greenbottle.storage.accessoStorage.entity.Cliente;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import it.unisa.greenbottle.storage.accesso.dao.AdminDao;
+import it.unisa.greenbottle.storage.accesso.dao.ClienteDao;
+import it.unisa.greenbottle.storage.accesso.entity.Admin;
+import it.unisa.greenbottle.storage.accesso.entity.Cliente;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class UtentiTest {
+class UtentiTest {
 
   @Autowired
   private ClienteDao clienteDao;
@@ -33,24 +36,22 @@ public class UtentiTest {
 
 
   @Test
-  public void createCliente() {
+  void createCliente() {
     clienteDao.save(clienteTest);
-    System.out.println("cliente test: " + clienteTest);
 
     Optional<Cliente> c2 = clienteDao.findClienteByEmail("mario.rossi@gmail.com");
 
-    System.out.println(c2.isPresent() ? "cliente2" + c2.get() : "Not found");
-    assert clienteTest.equals(c2.get());
+    assertTrue(c2.isPresent());
+    assertEquals(clienteTest, c2.get());
   }
 
   @Test
-  public void createAdmin() {
+  void createAdmin() {
     adminDao.save(adminTest);
-    System.out.println(adminTest.toString());
 
     Optional<Admin> a2 = adminDao.findAdminByEmail("admin1@greenbottle.it");
 
-    System.out.println(a2.isPresent() ? a2.get().toString() : "Not found");
-    assert adminTest.equals(a2.get());
+    assertTrue(a2.isPresent());
+    assertEquals(adminTest, a2.get());
   }
 }

@@ -1,6 +1,6 @@
 package it.unisa.greenbottle.controller.filters;
 
-import it.unisa.greenbottle.controller.accessoControl.util.SessionAdmin;
+import it.unisa.greenbottle.controller.accesso.util.SessionAdmin;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -8,28 +8,27 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
  * Filtro per la gestione dell'accesso alle pagine riservate agli admin.
  */
 @Component
-public class AdminFilter
-    implements Filter {
+@RequiredArgsConstructor
+public class AdminFilter implements Filter {
 
-  @Autowired
-  private SessionAdmin sessionAdmin;
+  private static final String LOGIN_ADMIN_PATH = "/loginAdmin";
+
+  private final SessionAdmin sessionAdmin;
 
   @Override
-  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-                       FilterChain filterChain) throws IOException, ServletException {
-
-
+  public void doFilter(final ServletRequest servletRequest, final ServletResponse servletResponse,
+                       final FilterChain filterChain) throws IOException, ServletException {
     if (sessionAdmin.getAdmin().isPresent()) {
       filterChain.doFilter(servletRequest, servletResponse);
     } else {
-      ((HttpServletResponse) servletResponse).sendRedirect("/loginAdmin");
+      ((HttpServletResponse) servletResponse).sendRedirect(LOGIN_ADMIN_PATH);
     }
   }
 }

@@ -6,10 +6,10 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import it.unisa.greenbottle.controller.accessoControl.util.SessionCliente;
-import it.unisa.greenbottle.storage.accessoStorage.entity.Cliente;
-import it.unisa.greenbottle.storage.ordineStorage.dao.OrdineDao;
-import it.unisa.greenbottle.storage.ordineStorage.entity.Ordine;
+import it.unisa.greenbottle.controller.accesso.util.SessionCliente;
+import it.unisa.greenbottle.storage.accesso.entity.Cliente;
+import it.unisa.greenbottle.storage.ordine.dao.OrdineDao;
+import it.unisa.greenbottle.storage.ordine.entity.Ordine;
 import java.sql.Timestamp;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class VisualizzaStoricoOrdiniTest {
+class VisualizzaStoricoOrdiniTest {
   @Autowired
   private MockMvc mockMvc;
 
@@ -37,25 +37,25 @@ public class VisualizzaStoricoOrdiniTest {
 
 
   @Test
-  public void startDateNonRispettaIlFormato() throws Exception {
+  void startDateNonRispettaIlFormato() throws Exception {
     testVisualizzaStoricoOrdini("2024/01/01", "2025-01-12", status().isBadRequest(),
         "Data di inizio non valida.");
   }
 
   @Test
-  public void endDateNonRispettaIlFormato() throws Exception {
+  void endDateNonRispettaIlFormato() throws Exception {
     testVisualizzaStoricoOrdini("2024-01-12", "2025/01/12", status().isBadRequest(),
         "Data di fine non valida.");
   }
 
   @Test
-  public void startDateDopoEndDate() throws Exception {
+  void startDateDopoEndDate() throws Exception {
     testVisualizzaStoricoOrdini("2024-01-12", "2024-01-11", status().isBadRequest(),
         "Data iniziale successiva alla data finale.");
   }
 
   @Test
-  public void dateRispettaIlFormato() throws Exception {
+  void dateRispettaIlFormato() throws Exception {
     testVisualizzaStoricoOrdini("2024-01-12", "2025-01-12", status().isOk(), null);
   }
 
