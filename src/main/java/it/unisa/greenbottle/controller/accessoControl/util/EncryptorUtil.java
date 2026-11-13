@@ -35,7 +35,7 @@ public class EncryptorUtil {
    * @param encryptionKey chiave simmetrica (16, 24 o 32 caratteri) usata per cifrare e decifrare
    * @throws IllegalStateException se la chiave non e' configurata o ha una lunghezza non valida
    */
-  public EncryptorUtil(@Value("${greenbottle.security.encryption-key:}") String encryptionKey) {
+  public EncryptorUtil(@Value("${greenbottle.security.encryption-key:}") final String encryptionKey) {
     final byte[] keyBytes = encryptionKey.getBytes(StandardCharsets.UTF_8);
     if (keyBytes.length != 16 && keyBytes.length != 24 && keyBytes.length != 32) {
       throw new IllegalStateException(
@@ -51,7 +51,7 @@ public class EncryptorUtil {
    * @param text stringa da cifrare
    * @return stringa cifrata, in Base64, con IV anteposto al testo cifrato
    */
-  public String encrypt(String text) {
+  public String encrypt(final String text) {
     try {
       final byte[] iv = new byte[IV_LENGTH_BYTES];
       secureRandom.nextBytes(iv);
@@ -62,7 +62,7 @@ public class EncryptorUtil {
       System.arraycopy(iv, 0, payload, 0, iv.length);
       System.arraycopy(encryptedBytes, 0, payload, iv.length, encryptedBytes.length);
       return Base64.getEncoder().encodeToString(payload);
-    } catch (GeneralSecurityException e) {
+    } catch (final GeneralSecurityException e) {
       throw new IllegalStateException("Errore durante la crittografia", e);
     }
   }
@@ -73,7 +73,7 @@ public class EncryptorUtil {
    * @param encryptedText stringa cifrata
    * @return stringa decifrata
    */
-  public String decrypt(String encryptedText) {
+  public String decrypt(final String encryptedText) {
     try {
       final byte[] payload = Base64.getDecoder().decode(encryptedText);
       final byte[] iv = Arrays.copyOfRange(payload, 0, IV_LENGTH_BYTES);
@@ -82,7 +82,7 @@ public class EncryptorUtil {
       cipher.init(Cipher.DECRYPT_MODE, secretKey, new GCMParameterSpec(TAG_LENGTH_BITS, iv));
       final byte[] decryptedBytes = cipher.doFinal(cipherText);
       return new String(decryptedBytes, StandardCharsets.UTF_8);
-    } catch (GeneralSecurityException e) {
+    } catch (final GeneralSecurityException e) {
       throw new IllegalStateException("Errore durante la decrittografia", e);
     }
   }
