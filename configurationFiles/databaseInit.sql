@@ -344,5 +344,8 @@ CREATE TABLE `recensione_seq` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO admin(`email`, `password`) VALUES('admin@greenbottle.it', '1FU7WYQZftZbHQuBb3M5Tw==');
+-- Password (in chiaro, solo per ambienti di sviluppo): asdfAsdf123@
+-- Cifrata con AES/GCM usando GREENBOTTLE_SECURITY_ENCRYPTION_KEY: se la chiave cambia
+-- va rigenerata, altrimenti l'account di test non puo' piu' autenticarsi.
+INSERT INTO admin(`email`, `password`) VALUES('admin@greenbottle.it', 'PUgY8DkwW5RGTSElBigfGKsenPQPCvvJ4UnJDkbY3krrH931puLAvQ==');
 

@@ -32,6 +32,9 @@ public class LoginController {
   @Autowired
   private SessionCliente sessionCliente;
 
+  @Autowired
+  private EncryptorUtil encryptorUtil;
+
   /**
    * Metodo per ottenere la pagina di login del cliente.
    *
@@ -74,8 +77,8 @@ public class LoginController {
       return loginView;
     }
 
-    String encryptedPassword = EncryptorUtil.encrypt(password);
-    if (!c.get().getPassword().equals(encryptedPassword)) {
+    String storedPassword = c.get().getPassword();
+    if (!password.equals(encryptorUtil.decrypt(storedPassword))) {
       model.addAttribute("correctPassword", false);
       return loginView;
     }
