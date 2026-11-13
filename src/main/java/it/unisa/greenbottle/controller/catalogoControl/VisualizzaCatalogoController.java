@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/catalogo")
 public class VisualizzaCatalogoController {
 
-  private final String catalogoView = "/CatalogoView/Catalogo";
+  private final String catalogoView = "CatalogoView/Catalogo";
 
   @Autowired
   private ProdottoDao prodottoDao;

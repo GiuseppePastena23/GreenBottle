@@ -1,5 +1,6 @@
 package it.unisa.greenbottle.controller.errorController;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,10 @@ public class CustomErrorController implements ErrorController {
    */
   @RequestMapping("/error")
   public String error(HttpServletRequest httpServletRequest, Model model) {
-    model.addAttribute("message", httpServletRequest.getAttribute("message"));
-    model.addAttribute("status", httpServletRequest.getAttribute("status"));
+    model.addAttribute("message",
+        httpServletRequest.getAttribute(RequestDispatcher.ERROR_MESSAGE));
+    model.addAttribute("status",
+        httpServletRequest.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
     return "error";
   }
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class HomeController {
-  private String homeView = "/CatalogoView/Home";
-  private String aboutUsView = "/CatalogoView/AboutUs";
+  private String homeView = "CatalogoView/Home";
+  private String aboutUsView = "CatalogoView/AboutUs";
 
   @GetMapping(value = {"/", "/home"})
   public String home() {

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 public class LoginController {
 
-  private static final String loginView = "/AccessoView/Login";
+  private static final String loginView = "AccessoView/Login";
 
   @Autowired
   private ClienteDao clienteDao;

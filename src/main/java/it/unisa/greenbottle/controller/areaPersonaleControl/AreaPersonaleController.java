@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/areaPersonale")
 public class AreaPersonaleController {
 
-  private final String areaPersonaleView = "/AreaPersonaleView/AreaPersonale";
+  private final String areaPersonaleView = "AreaPersonaleView/AreaPersonale";
 
   @GetMapping
   public String get(Model model) {
