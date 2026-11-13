@@ -28,6 +28,12 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<jacoco.version>0.8.12</jacoco.version>
+		<sonar-maven-plugin.version>5.5.0.6356</sonar-maven-plugin.version>
+		<!-- Analisi statica: sovrascrivibili da riga di comando (-D). Il token NON va nel pom. -->
+		<sonar.host.url>http://172.25.224.240:9000</sonar.host.url>
+		<sonar.projectKey>GreenBottle</sonar.projectKey>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -95,6 +101,33 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<!-- Copertura dei test: instrumenta le classi su test e genera jacoco.xml in target/site/jacoco -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Registrare il plugin qui rende utilizzabile anche il prefisso "sonar:sonar" -->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>${sonar-maven-plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
