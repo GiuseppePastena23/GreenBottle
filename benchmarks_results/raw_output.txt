@@ -1,0 +1,2059 @@
+.\mvnw.cmd package -P benchmarks -DskipTests
+PS C:\Users\pasquale\Documents\GitHub\Peppe\GreenBottle> java '-Djmh.ignoreLock=true' -jar 'target\greenbottle-0.0.1-SNAPSHOT-benchmarks.jar' '-l'
+Benchmarks:
+it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId
+it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti
+it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.decrypt
+it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.encrypt
+it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.equalsProdotti
+it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.hashCodeProdotto
+it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveId
+it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveProdotto
+it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormNonValido
+it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormValido
+it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.addToCarrelloProdottoEsistente
+it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.clearCarrello
+it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.removeFromCarrello
+it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello
+it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiAbbonamento
+it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiOrdine
+PS C:\Users\pasquale\Documents\GitHub\Peppe\GreenBottle> java '-Djmh.ignoreLock=true' -jar 'target\greenbottle-0.0.1-SNAPSHOT-benchmarks.jar'
+# WARNING: JMH lock is ignored by user request, make sure no other JMH instances are running
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId
+# Parameters: (numeroComposizioni = 10)
+
+# Run progress: 0.00% complete, ETA 00:14:20
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.140 us/op
+# Warmup Iteration   2: 0.128 us/op
+# Warmup Iteration   3: 0.123 us/op
+# Warmup Iteration   4: 0.124 us/op
+# Warmup Iteration   5: 0.124 us/op
+Iteration   1: 0.123 us/op
+Iteration   2: 0.124 us/op
+Iteration   3: 0.123 us/op
+Iteration   4: 0.123 us/op
+Iteration   5: 0.126 us/op
+
+# Run progress: 1.16% complete, ETA 00:14:52
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.133 us/op
+# Warmup Iteration   2: 0.120 us/op
+# Warmup Iteration   3: 0.123 us/op
+# Warmup Iteration   4: 0.123 us/op
+# Warmup Iteration   5: 0.122 us/op
+Iteration   1: 0.122 us/op
+Iteration   2: 0.122 us/op
+Iteration   3: 0.123 us/op
+Iteration   4: 0.124 us/op
+Iteration   5: 0.122 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId":
+  0.123 ±(99.9%) 0.002 us/op [Average]
+  (min, avg, max) = (0.122, 0.123, 0.126), stdev = 0.001
+  CI (99.9%): [0.121, 0.125] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId
+# Parameters: (numeroComposizioni = 100)
+
+# Run progress: 2.33% complete, ETA 00:14:38
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.776 us/op
+# Warmup Iteration   2: 1.688 us/op
+# Warmup Iteration   3: 1.724 us/op
+# Warmup Iteration   4: 1.693 us/op
+# Warmup Iteration   5: 1.688 us/op
+Iteration   1: 1.697 us/op
+Iteration   2: 1.687 us/op
+Iteration   3: 1.701 us/op
+Iteration   4: 1.701 us/op
+Iteration   5: 1.755 us/op
+
+# Run progress: 3.49% complete, ETA 00:14:27
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.701 us/op
+# Warmup Iteration   2: 1.598 us/op
+# Warmup Iteration   3: 1.533 us/op
+# Warmup Iteration   4: 1.512 us/op
+# Warmup Iteration   5: 1.512 us/op
+Iteration   1: 1.518 us/op
+Iteration   2: 1.509 us/op
+Iteration   3: 1.539 us/op
+Iteration   4: 1.543 us/op
+Iteration   5: 1.526 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId":
+  1.618 ±(99.9%) 0.147 us/op [Average]
+  (min, avg, max) = (1.509, 1.618, 1.755), stdev = 0.098
+  CI (99.9%): [1.470, 1.765] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId
+# Parameters: (numeroComposizioni = 1000)
+
+# Run progress: 4.65% complete, ETA 00:14:15
+# Fork: 1 of 2
+# Warmup Iteration   1: 16.843 us/op
+# Warmup Iteration   2: 15.944 us/op
+# Warmup Iteration   3: 16.091 us/op
+# Warmup Iteration   4: 16.592 us/op
+# Warmup Iteration   5: 16.521 us/op
+Iteration   1: 16.777 us/op
+Iteration   2: 17.563 us/op
+Iteration   3: 17.833 us/op
+Iteration   4: 17.706 us/op
+Iteration   5: 25.245 us/op
+
+# Run progress: 5.81% complete, ETA 00:14:05
+# Fork: 2 of 2
+# Warmup Iteration   1: 19.570 us/op
+# Warmup Iteration   2: 17.372 us/op
+# Warmup Iteration   3: 31.337 us/op
+# Warmup Iteration   4: 17.204 us/op
+# Warmup Iteration   5: 16.822 us/op
+Iteration   1: 16.784 us/op
+Iteration   2: 16.989 us/op
+Iteration   3: 16.735 us/op
+Iteration   4: 16.673 us/op
+Iteration   5: 18.362 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId":
+  18.067 ±(99.9%) 3.911 us/op [Average]
+  (min, avg, max) = (16.673, 18.067, 25.245), stdev = 2.587
+  CI (99.9%): [14.155, 21.978] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti
+# Parameters: (numeroComposizioni = 10)
+
+# Run progress: 6.98% complete, ETA 00:13:54
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.271 us/op
+# Warmup Iteration   2: 0.264 us/op
+# Warmup Iteration   3: 0.247 us/op
+# Warmup Iteration   4: 0.243 us/op
+# Warmup Iteration   5: 0.245 us/op
+Iteration   1: 0.245 us/op
+Iteration   2: 0.252 us/op
+Iteration   3: 0.245 us/op
+Iteration   4: 0.245 us/op
+Iteration   5: 0.249 us/op
+
+# Run progress: 8.14% complete, ETA 00:13:43
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.281 us/op
+# Warmup Iteration   2: 0.266 us/op
+# Warmup Iteration   3: 0.264 us/op
+# Warmup Iteration   4: 0.264 us/op
+# Warmup Iteration   5: 0.258 us/op
+Iteration   1: 0.258 us/op
+Iteration   2: 0.272 us/op
+Iteration   3: 0.257 us/op
+Iteration   4: 0.257 us/op
+Iteration   5: 0.256 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti":
+  0.253 ±(99.9%) 0.013 us/op [Average]
+  (min, avg, max) = (0.245, 0.253, 0.272), stdev = 0.008
+  CI (99.9%): [0.241, 0.266] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti
+# Parameters: (numeroComposizioni = 100)
+
+# Run progress: 9.30% complete, ETA 00:13:33
+# Fork: 1 of 2
+# Warmup Iteration   1: 20.619 us/op
+# Warmup Iteration   2: 18.922 us/op
+# Warmup Iteration   3: 18.644 us/op
+# Warmup Iteration   4: 19.348 us/op
+# Warmup Iteration   5: 19.811 us/op
+Iteration   1: 19.663 us/op
+Iteration   2: 18.794 us/op
+Iteration   3: 19.676 us/op
+Iteration   4: 19.094 us/op
+Iteration   5: 19.502 us/op
+
+# Run progress: 10.47% complete, ETA 00:13:22
+# Fork: 2 of 2
+# Warmup Iteration   1: 20.785 us/op
+# Warmup Iteration   2: 19.388 us/op
+# Warmup Iteration   3: 18.199 us/op
+# Warmup Iteration   4: 18.775 us/op
+# Warmup Iteration   5: 20.588 us/op
+Iteration   1: 18.812 us/op
+Iteration   2: 18.528 us/op
+Iteration   3: 18.675 us/op
+Iteration   4: 18.696 us/op
+Iteration   5: 18.571 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti":
+  19.001 ±(99.9%) 0.684 us/op [Average]
+  (min, avg, max) = (18.528, 19.001, 19.676), stdev = 0.452
+  CI (99.9%): [18.317, 19.685] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti
+# Parameters: (numeroComposizioni = 1000)
+
+# Run progress: 11.63% complete, ETA 00:13:12
+# Fork: 1 of 2
+# Warmup Iteration   1: 1640.450 us/op
+# Warmup Iteration   2: 1522.446 us/op
+# Warmup Iteration   3: 1543.771 us/op
+# Warmup Iteration   4: 1610.501 us/op
+# Warmup Iteration   5: 1524.135 us/op
+Iteration   1: 1533.528 us/op
+Iteration   2: 1524.498 us/op
+Iteration   3: 1562.962 us/op
+Iteration   4: 1574.393 us/op
+Iteration   5: 1611.366 us/op
+
+# Run progress: 12.79% complete, ETA 00:13:01
+# Fork: 2 of 2
+# Warmup Iteration   1: 1741.113 us/op
+# Warmup Iteration   2: 1723.926 us/op
+# Warmup Iteration   3: 1813.639 us/op
+# Warmup Iteration   4: 1603.543 us/op
+# Warmup Iteration   5: 1603.553 us/op
+Iteration   1: 1892.784 us/op
+Iteration   2: 1601.373 us/op
+Iteration   3: 1531.203 us/op
+Iteration   4: 1645.048 us/op
+Iteration   5: 1544.198 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti":
+  1602.135 ±(99.9%) 165.486 us/op [Average]
+  (min, avg, max) = (1524.498, 1602.135, 1892.784), stdev = 109.459
+  CI (99.9%): [1436.649, 1767.621] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.decrypt
+# Parameters: (lunghezzaTesto = 8)
+
+# Run progress: 13.95% complete, ETA 00:12:52
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.987 us/op
+# Warmup Iteration   2: 0.778 us/op
+# Warmup Iteration   3: 0.786 us/op
+# Warmup Iteration   4: 0.803 us/op
+# Warmup Iteration   5: 0.800 us/op
+Iteration   1: 0.778 us/op
+Iteration   2: 0.813 us/op
+Iteration   3: 0.811 us/op
+Iteration   4: 0.797 us/op
+Iteration   5: 0.798 us/op
+
+# Run progress: 15.12% complete, ETA 00:12:42
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.991 us/op
+# Warmup Iteration   2: 0.816 us/op
+# Warmup Iteration   3: 0.819 us/op
+# Warmup Iteration   4: 0.780 us/op
+# Warmup Iteration   5: 0.771 us/op
+Iteration   1: 0.783 us/op
+Iteration   2: 0.774 us/op
+Iteration   3: 0.822 us/op
+Iteration   4: 0.844 us/op
+Iteration   5: 0.788 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.decrypt":
+  0.801 ±(99.9%) 0.033 us/op [Average]
+  (min, avg, max) = (0.774, 0.801, 0.844), stdev = 0.022
+  CI (99.9%): [0.768, 0.834] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.decrypt
+# Parameters: (lunghezzaTesto = 64)
+
+# Run progress: 16.28% complete, ETA 00:12:31
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.045 us/op
+# Warmup Iteration   2: 0.881 us/op
+# Warmup Iteration   3: 0.842 us/op
+# Warmup Iteration   4: 0.906 us/op
+# Warmup Iteration   5: 0.827 us/op
+Iteration   1: 0.829 us/op
+Iteration   2: 0.865 us/op
+Iteration   3: 0.865 us/op
+Iteration   4: 0.823 us/op
+Iteration   5: 0.825 us/op
+
+# Run progress: 17.44% complete, ETA 00:12:21
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.095 us/op
+# Warmup Iteration   2: 0.852 us/op
+# Warmup Iteration   3: 0.875 us/op
+# Warmup Iteration   4: 0.841 us/op
+# Warmup Iteration   5: 0.854 us/op
+Iteration   1: 0.861 us/op
+Iteration   2: 0.846 us/op
+Iteration   3: 0.856 us/op
+Iteration   4: 0.877 us/op
+Iteration   5: 0.835 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.decrypt":
+  0.848 ±(99.9%) 0.029 us/op [Average]
+  (min, avg, max) = (0.823, 0.848, 0.877), stdev = 0.019
+  CI (99.9%): [0.819, 0.877] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.decrypt
+# Parameters: (lunghezzaTesto = 512)
+
+# Run progress: 18.60% complete, ETA 00:12:10
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.549 us/op
+# Warmup Iteration   2: 1.189 us/op
+# Warmup Iteration   3: 1.270 us/op
+# Warmup Iteration   4: 1.166 us/op
+# Warmup Iteration   5: 1.216 us/op
+Iteration   1: 1.148 us/op
+Iteration   2: 1.202 us/op
+Iteration   3: 1.265 us/op
+Iteration   4: 1.520 us/op
+Iteration   5: 1.152 us/op
+
+# Run progress: 19.77% complete, ETA 00:12:00
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.561 us/op
+# Warmup Iteration   2: 1.154 us/op
+# Warmup Iteration   3: 1.208 us/op
+# Warmup Iteration   4: 1.145 us/op
+# Warmup Iteration   5: 1.121 us/op
+Iteration   1: 1.178 us/op
+Iteration   2: 1.171 us/op
+Iteration   3: 1.198 us/op
+Iteration   4: 1.264 us/op
+Iteration   5: 1.287 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.decrypt":
+  1.238 ±(99.9%) 0.167 us/op [Average]
+  (min, avg, max) = (1.148, 1.238, 1.520), stdev = 0.110
+  CI (99.9%): [1.072, 1.405] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.encrypt
+# Parameters: (lunghezzaTesto = 8)
+
+# Run progress: 20.93% complete, ETA 00:11:49
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.197 us/op
+# Warmup Iteration   2: 0.890 us/op
+# Warmup Iteration   3: 0.748 us/op
+# Warmup Iteration   4: 0.741 us/op
+# Warmup Iteration   5: 0.765 us/op
+Iteration   1: 0.798 us/op
+Iteration   2: 0.783 us/op
+Iteration   3: 0.787 us/op
+Iteration   4: 0.755 us/op
+Iteration   5: 0.744 us/op
+
+# Run progress: 22.09% complete, ETA 00:11:39
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.111 us/op
+# Warmup Iteration   2: 0.767 us/op
+# Warmup Iteration   3: 0.729 us/op
+# Warmup Iteration   4: 0.738 us/op
+# Warmup Iteration   5: 0.729 us/op
+Iteration   1: 0.751 us/op
+Iteration   2: 0.748 us/op
+Iteration   3: 0.728 us/op
+Iteration   4: 0.731 us/op
+Iteration   5: 0.750 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.encrypt":
+  0.757 ±(99.9%) 0.036 us/op [Average]
+  (min, avg, max) = (0.728, 0.757, 0.798), stdev = 0.024
+  CI (99.9%): [0.721, 0.793] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.encrypt
+# Parameters: (lunghezzaTesto = 64)
+
+# Run progress: 23.26% complete, ETA 00:11:29
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.158 us/op
+# Warmup Iteration   2: 0.804 us/op
+# Warmup Iteration   3: 0.815 us/op
+# Warmup Iteration   4: 0.874 us/op
+# Warmup Iteration   5: 0.882 us/op
+Iteration   1: 0.785 us/op
+Iteration   2: 0.780 us/op
+Iteration   3: 0.775 us/op
+Iteration   4: 0.782 us/op
+Iteration   5: 0.780 us/op
+
+# Run progress: 24.42% complete, ETA 00:11:18
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.065 us/op
+# Warmup Iteration   2: 0.783 us/op
+# Warmup Iteration   3: 0.785 us/op
+# Warmup Iteration   4: 0.784 us/op
+# Warmup Iteration   5: 0.803 us/op
+Iteration   1: 0.784 us/op
+Iteration   2: 0.781 us/op
+Iteration   3: 0.779 us/op
+Iteration   4: 0.779 us/op
+Iteration   5: 0.788 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.encrypt":
+  0.781 ±(99.9%) 0.006 us/op [Average]
+  (min, avg, max) = (0.775, 0.781, 0.788), stdev = 0.004
+  CI (99.9%): [0.776, 0.787] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.encrypt
+# Parameters: (lunghezzaTesto = 512)
+
+# Run progress: 25.58% complete, ETA 00:11:08
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.402 us/op
+# Warmup Iteration   2: 1.092 us/op
+# Warmup Iteration   3: 1.077 us/op
+# Warmup Iteration   4: 1.091 us/op
+# Warmup Iteration   5: 1.090 us/op
+Iteration   1: 1.102 us/op
+Iteration   2: 1.065 us/op
+Iteration   3: 1.342 us/op
+Iteration   4: 1.397 us/op
+Iteration   5: 1.196 us/op
+
+# Run progress: 26.74% complete, ETA 00:10:58
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.912 us/op
+# Warmup Iteration   2: 1.441 us/op
+# Warmup Iteration   3: 1.407 us/op
+# Warmup Iteration   4: 1.270 us/op
+# Warmup Iteration   5: 1.193 us/op
+Iteration   1: 1.246 us/op
+Iteration   2: 1.290 us/op
+Iteration   3: 1.584 us/op
+Iteration   4: 1.152 us/op
+Iteration   5: 1.146 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.EncryptorUtilBenchmark.encrypt":
+  1.252 ±(99.9%) 0.238 us/op [Average]
+  (min, avg, max) = (1.065, 1.252, 1.584), stdev = 0.157
+  CI (99.9%): [1.014, 1.490] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.equalsProdotti
+# Parameters: (conCategoria = false)
+
+# Run progress: 27.91% complete, ETA 00:10:47
+# Fork: 1 of 2
+# Warmup Iteration   1: 26.654 ns/op
+# Warmup Iteration   2: 27.553 ns/op
+# Warmup Iteration   3: 23.809 ns/op
+# Warmup Iteration   4: 24.087 ns/op
+# Warmup Iteration   5: 23.702 ns/op
+Iteration   1: 25.361 ns/op
+Iteration   2: 25.010 ns/op
+Iteration   3: 24.513 ns/op
+Iteration   4: 27.244 ns/op
+Iteration   5: 23.293 ns/op
+
+# Run progress: 29.07% complete, ETA 00:10:37
+# Fork: 2 of 2
+# Warmup Iteration   1: 26.621 ns/op
+# Warmup Iteration   2: 25.969 ns/op
+# Warmup Iteration   3: 25.423 ns/op
+# Warmup Iteration   4: 25.428 ns/op
+# Warmup Iteration   5: 23.037 ns/op
+Iteration   1: 23.868 ns/op
+Iteration   2: 22.772 ns/op
+Iteration   3: 23.037 ns/op
+Iteration   4: 23.447 ns/op
+Iteration   5: 24.362 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.equalsProdotti":
+  24.291 ±(99.9%) 2.029 ns/op [Average]
+  (min, avg, max) = (22.772, 24.291, 27.244), stdev = 1.342
+  CI (99.9%): [22.262, 26.319] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.equalsProdotti
+# Parameters: (conCategoria = true)
+
+# Run progress: 30.23% complete, ETA 00:10:26
+# Fork: 1 of 2
+# Warmup Iteration   1: 27.991 ns/op
+# Warmup Iteration   2: 27.560 ns/op
+# Warmup Iteration   3: 25.418 ns/op
+# Warmup Iteration   4: 28.669 ns/op
+# Warmup Iteration   5: 130.950 ns/op
+Iteration   1: 35.234 ns/op
+Iteration   2: 47.001 ns/op
+Iteration   3: 105.672 ns/op
+Iteration   4: 68.433 ns/op
+Iteration   5: 40.944 ns/op
+
+# Run progress: 31.40% complete, ETA 00:10:16
+# Fork: 2 of 2
+# Warmup Iteration   1: 31.434 ns/op
+# Warmup Iteration   2: 29.192 ns/op
+# Warmup Iteration   3: 25.628 ns/op
+# Warmup Iteration   4: 24.851 ns/op
+# Warmup Iteration   5: 29.981 ns/op
+Iteration   1: 28.890 ns/op
+Iteration   2: 31.045 ns/op
+Iteration   3: 48.146 ns/op
+Iteration   4: 32.413 ns/op
+Iteration   5: 28.378 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.equalsProdotti":
+  46.616 ±(99.9%) 36.406 ns/op [Average]
+  (min, avg, max) = (28.378, 46.616, 105.672), stdev = 24.080
+  CI (99.9%): [10.209, 83.022] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.hashCodeProdotto
+# Parameters: (conCategoria = false)
+
+# Run progress: 32.56% complete, ETA 00:10:06
+# Fork: 1 of 2
+# Warmup Iteration   1: 24.410 ns/op
+# Warmup Iteration   2: 27.445 ns/op
+# Warmup Iteration   3: 23.655 ns/op
+# Warmup Iteration   4: 23.297 ns/op
+# Warmup Iteration   5: 23.417 ns/op
+Iteration   1: 23.707 ns/op
+Iteration   2: 28.832 ns/op
+Iteration   3: 24.566 ns/op
+Iteration   4: 24.231 ns/op
+Iteration   5: 25.663 ns/op
+
+# Run progress: 33.72% complete, ETA 00:09:55
+# Fork: 2 of 2
+# Warmup Iteration   1: 26.307 ns/op
+# Warmup Iteration   2: 24.001 ns/op
+# Warmup Iteration   3: 23.876 ns/op
+# Warmup Iteration   4: 23.815 ns/op
+# Warmup Iteration   5: 23.481 ns/op
+Iteration   1: 23.545 ns/op
+Iteration   2: 24.471 ns/op
+Iteration   3: 25.675 ns/op
+Iteration   4: 23.550 ns/op
+Iteration   5: 23.374 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.hashCodeProdotto":
+  24.761 ±(99.9%) 2.500 ns/op [Average]
+  (min, avg, max) = (23.374, 24.761, 28.832), stdev = 1.653
+  CI (99.9%): [22.262, 27.261] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.hashCodeProdotto
+# Parameters: (conCategoria = true)
+
+# Run progress: 34.88% complete, ETA 00:09:45
+# Fork: 1 of 2
+# Warmup Iteration   1: 25.925 ns/op
+# Warmup Iteration   2: 24.653 ns/op
+# Warmup Iteration   3: 24.262 ns/op
+# Warmup Iteration   4: 24.284 ns/op
+# Warmup Iteration   5: 24.386 ns/op
+Iteration   1: 25.105 ns/op
+Iteration   2: 27.499 ns/op
+Iteration   3: 24.318 ns/op
+Iteration   4: 24.127 ns/op
+Iteration   5: 24.304 ns/op
+
+# Run progress: 36.05% complete, ETA 00:09:34
+# Fork: 2 of 2
+# Warmup Iteration   1: 26.007 ns/op
+# Warmup Iteration   2: 26.525 ns/op
+# Warmup Iteration   3: 24.409 ns/op
+# Warmup Iteration   4: 24.153 ns/op
+# Warmup Iteration   5: 24.220 ns/op
+Iteration   1: 24.935 ns/op
+Iteration   2: 24.221 ns/op
+Iteration   3: 24.153 ns/op
+Iteration   4: 24.236 ns/op
+Iteration   5: 24.926 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.hashCodeProdotto":
+  24.782 ±(99.9%) 1.546 ns/op [Average]
+  (min, avg, max) = (24.127, 24.782, 27.499), stdev = 1.023
+  CI (99.9%): [23.236, 26.328] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveId
+# Parameters: (conCategoria = false)
+
+# Run progress: 37.21% complete, ETA 00:09:24
+# Fork: 1 of 2
+# Warmup Iteration   1: 2.839 ns/op
+# Warmup Iteration   2: 2.826 ns/op
+# Warmup Iteration   3: 2.852 ns/op
+# Warmup Iteration   4: 2.757 ns/op
+# Warmup Iteration   5: 2.769 ns/op
+Iteration   1: 2.788 ns/op
+Iteration   2: 2.840 ns/op
+Iteration   3: 2.752 ns/op
+Iteration   4: 2.755 ns/op
+Iteration   5: 2.798 ns/op
+
+# Run progress: 38.37% complete, ETA 00:09:13
+# Fork: 2 of 2
+# Warmup Iteration   1: 3.005 ns/op
+# Warmup Iteration   2: 2.890 ns/op
+# Warmup Iteration   3: 2.753 ns/op
+# Warmup Iteration   4: 2.822 ns/op
+# Warmup Iteration   5: 2.919 ns/op
+Iteration   1: 2.790 ns/op
+Iteration   2: 2.737 ns/op
+Iteration   3: 2.743 ns/op
+Iteration   4: 2.782 ns/op
+Iteration   5: 2.748 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveId":
+  2.773 ±(99.9%) 0.049 ns/op [Average]
+  (min, avg, max) = (2.737, 2.773, 2.840), stdev = 0.032
+  CI (99.9%): [2.725, 2.822] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveId
+# Parameters: (conCategoria = true)
+
+# Run progress: 39.53% complete, ETA 00:09:03
+# Fork: 1 of 2
+# Warmup Iteration   1: 2.876 ns/op
+# Warmup Iteration   2: 2.819 ns/op
+# Warmup Iteration   3: 2.724 ns/op
+# Warmup Iteration   4: 2.792 ns/op
+# Warmup Iteration   5: 2.781 ns/op
+Iteration   1: 2.740 ns/op
+Iteration   2: 2.738 ns/op
+Iteration   3: 2.753 ns/op
+Iteration   4: 2.843 ns/op
+Iteration   5: 2.920 ns/op
+
+# Run progress: 40.70% complete, ETA 00:08:52
+# Fork: 2 of 2
+# Warmup Iteration   1: 2.959 ns/op
+# Warmup Iteration   2: 3.012 ns/op
+# Warmup Iteration   3: 2.718 ns/op
+# Warmup Iteration   4: 2.743 ns/op
+# Warmup Iteration   5: 2.782 ns/op
+Iteration   1: 2.757 ns/op
+Iteration   2: 2.708 ns/op
+Iteration   3: 2.740 ns/op
+Iteration   4: 2.946 ns/op
+Iteration   5: 2.751 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveId":
+  2.790 ±(99.9%) 0.126 ns/op [Average]
+  (min, avg, max) = (2.708, 2.790, 2.946), stdev = 0.083
+  CI (99.9%): [2.664, 2.916] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveProdotto
+# Parameters: (conCategoria = false)
+
+# Run progress: 41.86% complete, ETA 00:08:42
+# Fork: 1 of 2
+# Warmup Iteration   1: 54.990 ns/op
+# Warmup Iteration   2: 54.085 ns/op
+# Warmup Iteration   3: 53.609 ns/op
+# Warmup Iteration   4: 55.223 ns/op
+# Warmup Iteration   5: 53.899 ns/op
+Iteration   1: 54.960 ns/op
+Iteration   2: 53.723 ns/op
+Iteration   3: 56.896 ns/op
+Iteration   4: 55.238 ns/op
+Iteration   5: 56.101 ns/op
+
+# Run progress: 43.02% complete, ETA 00:08:31
+# Fork: 2 of 2
+# Warmup Iteration   1: 55.349 ns/op
+# Warmup Iteration   2: 54.848 ns/op
+# Warmup Iteration   3: 53.602 ns/op
+# Warmup Iteration   4: 55.558 ns/op
+# Warmup Iteration   5: 55.209 ns/op
+Iteration   1: 54.515 ns/op
+Iteration   2: 53.829 ns/op
+Iteration   3: 56.126 ns/op
+Iteration   4: 54.473 ns/op
+Iteration   5: 54.578 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveProdotto":
+  55.044 ±(99.9%) 1.578 ns/op [Average]
+  (min, avg, max) = (53.723, 55.044, 56.896), stdev = 1.044
+  CI (99.9%): [53.466, 56.622] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveProdotto
+# Parameters: (conCategoria = true)
+
+# Run progress: 44.19% complete, ETA 00:08:21
+# Fork: 1 of 2
+# Warmup Iteration   1: 56.404 ns/op
+# Warmup Iteration   2: 56.229 ns/op
+# Warmup Iteration   3: 58.938 ns/op
+# Warmup Iteration   4: 55.676 ns/op
+# Warmup Iteration   5: 55.135 ns/op
+Iteration   1: 54.993 ns/op
+Iteration   2: 55.059 ns/op
+Iteration   3: 56.073 ns/op
+Iteration   4: 55.359 ns/op
+Iteration   5: 55.608 ns/op
+
+# Run progress: 45.35% complete, ETA 00:08:10
+# Fork: 2 of 2
+# Warmup Iteration   1: 58.156 ns/op
+# Warmup Iteration   2: 55.864 ns/op
+# Warmup Iteration   3: 56.330 ns/op
+# Warmup Iteration   4: 55.474 ns/op
+# Warmup Iteration   5: 56.870 ns/op
+Iteration   1: 55.204 ns/op
+Iteration   2: 57.398 ns/op
+Iteration   3: 56.656 ns/op
+Iteration   4: 55.490 ns/op
+Iteration   5: 55.999 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.ProdottoHashingBenchmark.lookupConChiaveProdotto":
+  55.784 ±(99.9%) 1.158 ns/op [Average]
+  (min, avg, max) = (54.993, 55.784, 57.398), stdev = 0.766
+  CI (99.9%): [54.626, 56.942] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormNonValido
+
+# Run progress: 46.51% complete, ETA 00:08:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 10:54:39.312 [it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormNonValido-jmh-worker-1] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 0.0.1-SNAPSHOT
+10.452 us/op
+# Warmup Iteration   2: 5.044 us/op
+# Warmup Iteration   3: 4.803 us/op
+# Warmup Iteration   4: 4.742 us/op
+# Warmup Iteration   5: 4.706 us/op
+Iteration   1: 4.885 us/op
+Iteration   2: 4.768 us/op
+Iteration   3: 4.625 us/op
+Iteration   4: 4.603 us/op
+Iteration   5: 4.641 us/op
+
+# Run progress: 47.67% complete, ETA 00:07:50
+# Fork: 2 of 2
+# Warmup Iteration   1: 10:54:49.972 [it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormNonValido-jmh-worker-1] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 0.0.1-SNAPSHOT
+8.757 us/op
+# Warmup Iteration   2: 4.852 us/op
+# Warmup Iteration   3: 4.595 us/op
+# Warmup Iteration   4: 4.553 us/op
+# Warmup Iteration   5: 4.519 us/op
+Iteration   1: 4.587 us/op
+Iteration   2: 4.529 us/op
+Iteration   3: 4.586 us/op
+Iteration   4: 4.672 us/op
+Iteration   5: 4.604 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormNonValido":
+  4.650 ±(99.9%) 0.157 us/op [Average]
+  (min, avg, max) = (4.529, 4.650, 4.885), stdev = 0.104
+  CI (99.9%): [4.493, 4.807] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormValido
+
+# Run progress: 48.84% complete, ETA 00:07:39
+# Fork: 1 of 2
+# Warmup Iteration   1: 10:55:00.614 [it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormValido-jmh-worker-1] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 0.0.1-SNAPSHOT
+9.629 us/op
+# Warmup Iteration   2: 5.830 us/op
+# Warmup Iteration   3: 6.106 us/op
+# Warmup Iteration   4: 5.852 us/op
+# Warmup Iteration   5: 6.101 us/op
+Iteration   1: 6.028 us/op
+Iteration   2: 5.807 us/op
+Iteration   3: 5.813 us/op
+Iteration   4: 5.779 us/op
+Iteration   5: 5.829 us/op
+
+# Run progress: 50.00% complete, ETA 00:07:29
+# Fork: 2 of 2
+# Warmup Iteration   1: 10:55:11.321 [it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormValido-jmh-worker-1] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 0.0.1-SNAPSHOT
+8.963 us/op
+# Warmup Iteration   2: 6.047 us/op
+# Warmup Iteration   3: 6.022 us/op
+# Warmup Iteration   4: 6.066 us/op
+# Warmup Iteration   5: 6.011 us/op
+Iteration   1: 6.074 us/op
+Iteration   2: 5.959 us/op
+Iteration   3: 6.082 us/op
+Iteration   4: 6.097 us/op
+Iteration   5: 6.206 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.RegistrazioneFormBenchmark.validateFormValido":
+  5.967 ±(99.9%) 0.229 us/op [Average]
+  (min, avg, max) = (5.779, 5.967, 6.206), stdev = 0.152
+  CI (99.9%): [5.738, 6.197] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.addToCarrelloProdottoEsistente
+# Parameters: (prodottiNelCarrello = 1)
+
+# Run progress: 51.16% complete, ETA 00:07:19
+# Fork: 1 of 2
+# Warmup Iteration   1: 12.248 ns/op
+# Warmup Iteration   2: 12.113 ns/op
+# Warmup Iteration   3: 14.988 ns/op
+# Warmup Iteration   4: 16.107 ns/op
+# Warmup Iteration   5: 15.071 ns/op
+Iteration   1: 15.042 ns/op
+Iteration   2: 15.002 ns/op
+Iteration   3: 15.062 ns/op
+Iteration   4: 14.914 ns/op
+Iteration   5: 15.160 ns/op
+
+# Run progress: 52.33% complete, ETA 00:07:08
+# Fork: 2 of 2
+# Warmup Iteration   1: 12.020 ns/op
+# Warmup Iteration   2: 12.119 ns/op
+# Warmup Iteration   3: 15.180 ns/op
+# Warmup Iteration   4: 15.450 ns/op
+# Warmup Iteration   5: 15.047 ns/op
+Iteration   1: 14.983 ns/op
+Iteration   2: 15.000 ns/op
+Iteration   3: 15.010 ns/op
+Iteration   4: 15.113 ns/op
+Iteration   5: 15.108 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.addToCarrelloProdottoEsistente":
+  15.039 ±(99.9%) 0.110 ns/op [Average]
+  (min, avg, max) = (14.914, 15.039, 15.160), stdev = 0.073
+  CI (99.9%): [14.929, 15.149] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.addToCarrelloProdottoEsistente
+# Parameters: (prodottiNelCarrello = 10)
+
+# Run progress: 53.49% complete, ETA 00:06:58
+# Fork: 1 of 2
+# Warmup Iteration   1: 12.979 ns/op
+# Warmup Iteration   2: 12.249 ns/op
+# Warmup Iteration   3: 15.742 ns/op
+# Warmup Iteration   4: 16.622 ns/op
+# Warmup Iteration   5: 15.507 ns/op
+Iteration   1: 15.561 ns/op
+Iteration   2: 15.518 ns/op
+Iteration   3: 15.468 ns/op
+Iteration   4: 16.102 ns/op
+Iteration   5: 15.380 ns/op
+
+# Run progress: 54.65% complete, ETA 00:06:47
+# Fork: 2 of 2
+# Warmup Iteration   1: 12.214 ns/op
+# Warmup Iteration   2: 11.983 ns/op
+# Warmup Iteration   3: 15.255 ns/op
+# Warmup Iteration   4: 15.088 ns/op
+# Warmup Iteration   5: 15.164 ns/op
+Iteration   1: 15.096 ns/op
+Iteration   2: 15.034 ns/op
+Iteration   3: 15.086 ns/op
+Iteration   4: 15.216 ns/op
+Iteration   5: 15.109 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.addToCarrelloProdottoEsistente":
+  15.357 ±(99.9%) 0.495 ns/op [Average]
+  (min, avg, max) = (15.034, 15.357, 16.102), stdev = 0.327
+  CI (99.9%): [14.862, 15.852] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.addToCarrelloProdottoEsistente
+# Parameters: (prodottiNelCarrello = 100)
+
+# Run progress: 55.81% complete, ETA 00:06:37
+# Fork: 1 of 2
+# Warmup Iteration   1: 12.561 ns/op
+# Warmup Iteration   2: 12.638 ns/op
+# Warmup Iteration   3: 15.458 ns/op
+# Warmup Iteration   4: 15.355 ns/op
+# Warmup Iteration   5: 15.221 ns/op
+Iteration   1: 15.244 ns/op
+Iteration   2: 15.172 ns/op
+Iteration   3: 15.500 ns/op
+Iteration   4: 15.364 ns/op
+Iteration   5: 15.152 ns/op
+
+# Run progress: 56.98% complete, ETA 00:06:26
+# Fork: 2 of 2
+# Warmup Iteration   1: 11.920 ns/op
+# Warmup Iteration   2: 12.096 ns/op
+# Warmup Iteration   3: 15.199 ns/op
+# Warmup Iteration   4: 15.100 ns/op
+# Warmup Iteration   5: 15.062 ns/op
+Iteration   1: 15.221 ns/op
+Iteration   2: 16.099 ns/op
+Iteration   3: 17.242 ns/op
+Iteration   4: 15.680 ns/op
+Iteration   5: 14.992 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.addToCarrelloProdottoEsistente":
+  15.566 ±(99.9%) 1.012 ns/op [Average]
+  (min, avg, max) = (14.992, 15.566, 17.242), stdev = 0.669
+  CI (99.9%): [14.555, 16.578] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.clearCarrello
+# Parameters: (prodottiNelCarrello = 1)
+
+# Run progress: 58.14% complete, ETA 00:06:16
+# Fork: 1 of 2
+# Warmup Iteration   1: 27.994 ns/op
+# Warmup Iteration   2: 29.173 ns/op
+# Warmup Iteration   3: 28.155 ns/op
+# Warmup Iteration   4: 27.823 ns/op
+# Warmup Iteration   5: 28.391 ns/op
+Iteration   1: 28.132 ns/op
+Iteration   2: 27.632 ns/op
+Iteration   3: 27.847 ns/op
+Iteration   4: 27.946 ns/op
+Iteration   5: 27.545 ns/op
+
+# Run progress: 59.30% complete, ETA 00:06:05
+# Fork: 2 of 2
+# Warmup Iteration   1: 28.813 ns/op
+# Warmup Iteration   2: 28.505 ns/op
+# Warmup Iteration   3: 28.303 ns/op
+# Warmup Iteration   4: 28.773 ns/op
+# Warmup Iteration   5: 27.528 ns/op
+Iteration   1: 27.555 ns/op
+Iteration   2: 28.185 ns/op
+Iteration   3: 27.550 ns/op
+Iteration   4: 27.666 ns/op
+Iteration   5: 27.597 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.clearCarrello":
+  27.765 ±(99.9%) 0.372 ns/op [Average]
+  (min, avg, max) = (27.545, 27.765, 28.185), stdev = 0.246
+  CI (99.9%): [27.393, 28.137] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.clearCarrello
+# Parameters: (prodottiNelCarrello = 10)
+
+# Run progress: 60.47% complete, ETA 00:05:55
+# Fork: 1 of 2
+# Warmup Iteration   1: 28.895 ns/op
+# Warmup Iteration   2: 27.950 ns/op
+# Warmup Iteration   3: 27.910 ns/op
+# Warmup Iteration   4: 27.851 ns/op
+# Warmup Iteration   5: 27.406 ns/op
+Iteration   1: 27.792 ns/op
+Iteration   2: 28.496 ns/op
+Iteration   3: 28.449 ns/op
+Iteration   4: 27.795 ns/op
+Iteration   5: 27.741 ns/op
+
+# Run progress: 61.63% complete, ETA 00:05:44
+# Fork: 2 of 2
+# Warmup Iteration   1: 28.859 ns/op
+# Warmup Iteration   2: 28.321 ns/op
+# Warmup Iteration   3: 27.599 ns/op
+# Warmup Iteration   4: 27.434 ns/op
+# Warmup Iteration   5: 27.454 ns/op
+Iteration   1: 28.767 ns/op
+Iteration   2: 27.630 ns/op
+Iteration   3: 27.803 ns/op
+Iteration   4: 27.730 ns/op
+Iteration   5: 27.701 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.clearCarrello":
+  27.990 ±(99.9%) 0.622 ns/op [Average]
+  (min, avg, max) = (27.630, 27.990, 28.767), stdev = 0.412
+  CI (99.9%): [27.368, 28.613] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.clearCarrello
+# Parameters: (prodottiNelCarrello = 100)
+
+# Run progress: 62.79% complete, ETA 00:05:34
+# Fork: 1 of 2
+# Warmup Iteration   1: 101.686 ns/op
+# Warmup Iteration   2: 87.557 ns/op
+# Warmup Iteration   3: 87.411 ns/op
+# Warmup Iteration   4: 87.789 ns/op
+# Warmup Iteration   5: 87.269 ns/op
+Iteration   1: 91.220 ns/op
+Iteration   2: 89.306 ns/op
+Iteration   3: 87.539 ns/op
+Iteration   4: 87.375 ns/op
+Iteration   5: 88.027 ns/op
+
+# Run progress: 63.95% complete, ETA 00:05:23
+# Fork: 2 of 2
+# Warmup Iteration   1: 98.570 ns/op
+# Warmup Iteration   2: 89.407 ns/op
+# Warmup Iteration   3: 87.646 ns/op
+# Warmup Iteration   4: 88.614 ns/op
+# Warmup Iteration   5: 93.127 ns/op
+Iteration   1: 89.129 ns/op
+Iteration   2: 90.446 ns/op
+Iteration   3: 96.055 ns/op
+Iteration   4: 92.586 ns/op
+Iteration   5: 90.752 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.clearCarrello":
+  90.244 ±(99.9%) 4.003 ns/op [Average]
+  (min, avg, max) = (87.375, 90.244, 96.055), stdev = 2.648
+  CI (99.9%): [86.241, 94.246] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.removeFromCarrello
+# Parameters: (prodottiNelCarrello = 1)
+
+# Run progress: 65.12% complete, ETA 00:05:13
+# Fork: 1 of 2
+# Warmup Iteration   1: 26.346 ns/op
+# Warmup Iteration   2: 25.696 ns/op
+# Warmup Iteration   3: 24.901 ns/op
+# Warmup Iteration   4: 24.875 ns/op
+# Warmup Iteration   5: 25.904 ns/op
+Iteration   1: 26.668 ns/op
+Iteration   2: 24.910 ns/op
+Iteration   3: 24.924 ns/op
+Iteration   4: 25.511 ns/op
+Iteration   5: 25.208 ns/op
+
+# Run progress: 66.28% complete, ETA 00:05:02
+# Fork: 2 of 2
+# Warmup Iteration   1: 26.600 ns/op
+# Warmup Iteration   2: 25.968 ns/op
+# Warmup Iteration   3: 25.307 ns/op
+# Warmup Iteration   4: 25.182 ns/op
+# Warmup Iteration   5: 25.868 ns/op
+Iteration   1: 25.421 ns/op
+Iteration   2: 26.379 ns/op
+Iteration   3: 25.600 ns/op
+Iteration   4: 25.933 ns/op
+Iteration   5: 25.340 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.removeFromCarrello":
+  25.589 ±(99.9%) 0.880 ns/op [Average]
+  (min, avg, max) = (24.910, 25.589, 26.668), stdev = 0.582
+  CI (99.9%): [24.709, 26.470] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.removeFromCarrello
+# Parameters: (prodottiNelCarrello = 10)
+
+# Run progress: 67.44% complete, ETA 00:04:52
+# Fork: 1 of 2
+# Warmup Iteration   1: 26.817 ns/op
+# Warmup Iteration   2: 25.578 ns/op
+# Warmup Iteration   3: 25.861 ns/op
+# Warmup Iteration   4: 25.458 ns/op
+# Warmup Iteration   5: 25.439 ns/op
+Iteration   1: 25.372 ns/op
+Iteration   2: 25.103 ns/op
+Iteration   3: 25.426 ns/op
+Iteration   4: 25.833 ns/op
+Iteration   5: 25.704 ns/op
+
+# Run progress: 68.60% complete, ETA 00:04:41
+# Fork: 2 of 2
+# Warmup Iteration   1: 27.144 ns/op
+# Warmup Iteration   2: 25.582 ns/op
+# Warmup Iteration   3: 24.828 ns/op
+# Warmup Iteration   4: 25.605 ns/op
+# Warmup Iteration   5: 25.089 ns/op
+Iteration   1: 24.954 ns/op
+Iteration   2: 25.065 ns/op
+Iteration   3: 26.065 ns/op
+Iteration   4: 24.825 ns/op
+Iteration   5: 25.192 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.removeFromCarrello":
+  25.354 ±(99.9%) 0.612 ns/op [Average]
+  (min, avg, max) = (24.825, 25.354, 26.065), stdev = 0.405
+  CI (99.9%): [24.742, 25.966] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.removeFromCarrello
+# Parameters: (prodottiNelCarrello = 100)
+
+# Run progress: 69.77% complete, ETA 00:04:31
+# Fork: 1 of 2
+# Warmup Iteration   1: 38.581 ns/op
+# Warmup Iteration   2: 26.808 ns/op
+# Warmup Iteration   3: 27.338 ns/op
+# Warmup Iteration   4: 25.282 ns/op
+# Warmup Iteration   5: 25.584 ns/op
+Iteration   1: 36.483 ns/op
+Iteration   2: 25.515 ns/op
+Iteration   3: 26.539 ns/op
+Iteration   4: 25.057 ns/op
+Iteration   5: 25.528 ns/op
+
+# Run progress: 70.93% complete, ETA 00:04:21
+# Fork: 2 of 2
+# Warmup Iteration   1: 33.934 ns/op
+# Warmup Iteration   2: 26.647 ns/op
+# Warmup Iteration   3: 25.936 ns/op
+# Warmup Iteration   4: 25.667 ns/op
+# Warmup Iteration   5: 25.452 ns/op
+Iteration   1: 26.563 ns/op
+Iteration   2: 26.418 ns/op
+Iteration   3: 25.540 ns/op
+Iteration   4: 24.905 ns/op
+Iteration   5: 26.119 ns/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloBenchmark.removeFromCarrello":
+  26.867 ±(99.9%) 5.187 ns/op [Average]
+  (min, avg, max) = (24.905, 26.867, 36.483), stdev = 3.431
+  CI (99.9%): [21.680, 32.054] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello
+# Parameters: (percentualeProdottiPresenti = 100, prodottiNelCarrello = 10)
+
+# Run progress: 72.09% complete, ETA 00:04:10
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.238 us/op
+# Warmup Iteration   2: 0.223 us/op
+# Warmup Iteration   3: 0.223 us/op
+# Warmup Iteration   4: 0.221 us/op
+# Warmup Iteration   5: 0.223 us/op
+Iteration   1: 0.223 us/op
+Iteration   2: 0.233 us/op
+Iteration   3: 0.222 us/op
+Iteration   4: 0.221 us/op
+Iteration   5: 0.220 us/op
+
+# Run progress: 73.26% complete, ETA 00:04:00
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.236 us/op
+# Warmup Iteration   2: 0.221 us/op
+# Warmup Iteration   3: 0.234 us/op
+# Warmup Iteration   4: 0.219 us/op
+# Warmup Iteration   5: 0.219 us/op
+Iteration   1: 0.219 us/op
+Iteration   2: 0.232 us/op
+Iteration   3: 0.219 us/op
+Iteration   4: 0.219 us/op
+Iteration   5: 0.223 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello":
+  0.223 ±(99.9%) 0.008 us/op [Average]
+  (min, avg, max) = (0.219, 0.223, 0.233), stdev = 0.005
+  CI (99.9%): [0.215, 0.231] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello
+# Parameters: (percentualeProdottiPresenti = 100, prodottiNelCarrello = 100)
+
+# Run progress: 74.42% complete, ETA 00:03:49
+# Fork: 1 of 2
+# Warmup Iteration   1: 3.195 us/op
+# Warmup Iteration   2: 3.327 us/op
+# Warmup Iteration   3: 2.909 us/op
+# Warmup Iteration   4: 2.897 us/op
+# Warmup Iteration   5: 3.264 us/op
+Iteration   1: 2.936 us/op
+Iteration   2: 3.029 us/op
+Iteration   3: 2.882 us/op
+Iteration   4: 2.884 us/op
+Iteration   5: 2.897 us/op
+
+# Run progress: 75.58% complete, ETA 00:03:39
+# Fork: 2 of 2
+# Warmup Iteration   1: 3.152 us/op
+# Warmup Iteration   2: 2.965 us/op
+# Warmup Iteration   3: 2.993 us/op
+# Warmup Iteration   4: 2.909 us/op
+# Warmup Iteration   5: 2.954 us/op
+Iteration   1: 3.064 us/op
+Iteration   2: 2.902 us/op
+Iteration   3: 2.924 us/op
+Iteration   4: 2.922 us/op
+Iteration   5: 2.930 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello":
+  2.937 ±(99.9%) 0.092 us/op [Average]
+  (min, avg, max) = (2.882, 2.937, 3.064), stdev = 0.061
+  CI (99.9%): [2.845, 3.029] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello
+# Parameters: (percentualeProdottiPresenti = 100, prodottiNelCarrello = 1000)
+
+# Run progress: 76.74% complete, ETA 00:03:28
+# Fork: 1 of 2
+# Warmup Iteration   1: 45.880 us/op
+# Warmup Iteration   2: 44.611 us/op
+# Warmup Iteration   3: 41.104 us/op
+# Warmup Iteration   4: 42.552 us/op
+# Warmup Iteration   5: 40.692 us/op
+Iteration   1: 41.348 us/op
+Iteration   2: 40.411 us/op
+Iteration   3: 39.940 us/op
+Iteration   4: 40.161 us/op
+Iteration   5: 40.015 us/op
+
+# Run progress: 77.91% complete, ETA 00:03:18
+# Fork: 2 of 2
+# Warmup Iteration   1: 43.099 us/op
+# Warmup Iteration   2: 40.672 us/op
+# Warmup Iteration   3: 38.271 us/op
+# Warmup Iteration   4: 37.587 us/op
+# Warmup Iteration   5: 38.381 us/op
+Iteration   1: 38.409 us/op
+Iteration   2: 37.652 us/op
+Iteration   3: 37.889 us/op
+Iteration   4: 38.247 us/op
+Iteration   5: 42.131 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello":
+  39.620 ±(99.9%) 2.292 us/op [Average]
+  (min, avg, max) = (37.652, 39.620, 42.131), stdev = 1.516
+  CI (99.9%): [37.328, 41.912] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello
+# Parameters: (percentualeProdottiPresenti = 50, prodottiNelCarrello = 10)
+
+# Run progress: 79.07% complete, ETA 00:03:07
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.258 us/op
+# Warmup Iteration   2: 0.248 us/op
+# Warmup Iteration   3: 0.225 us/op
+# Warmup Iteration   4: 0.225 us/op
+# Warmup Iteration   5: 0.233 us/op
+Iteration   1: 0.223 us/op
+Iteration   2: 0.223 us/op
+Iteration   3: 0.224 us/op
+Iteration   4: 0.236 us/op
+Iteration   5: 0.222 us/op
+
+# Run progress: 80.23% complete, ETA 00:02:57
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.226 us/op
+# Warmup Iteration   2: 0.199 us/op
+# Warmup Iteration   3: 0.209 us/op
+# Warmup Iteration   4: 0.212 us/op
+# Warmup Iteration   5: 0.209 us/op
+Iteration   1: 0.207 us/op
+Iteration   2: 0.208 us/op
+Iteration   3: 0.207 us/op
+Iteration   4: 0.207 us/op
+Iteration   5: 0.213 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello":
+  0.217 ±(99.9%) 0.015 us/op [Average]
+  (min, avg, max) = (0.207, 0.217, 0.236), stdev = 0.010
+  CI (99.9%): [0.202, 0.232] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello
+# Parameters: (percentualeProdottiPresenti = 50, prodottiNelCarrello = 100)
+
+# Run progress: 81.40% complete, ETA 00:02:46
+# Fork: 1 of 2
+# Warmup Iteration   1: 2.036 us/op
+# Warmup Iteration   2: 2.021 us/op
+# Warmup Iteration   3: 1.934 us/op
+# Warmup Iteration   4: 2.019 us/op
+# Warmup Iteration   5: 1.954 us/op
+Iteration   1: 1.911 us/op
+Iteration   2: 1.834 us/op
+Iteration   3: 1.831 us/op
+Iteration   4: 1.850 us/op
+Iteration   5: 1.863 us/op
+
+# Run progress: 82.56% complete, ETA 00:02:36
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.939 us/op
+# Warmup Iteration   2: 1.764 us/op
+# Warmup Iteration   3: 1.754 us/op
+# Warmup Iteration   4: 1.814 us/op
+# Warmup Iteration   5: 1.761 us/op
+Iteration   1: 1.729 us/op
+Iteration   2: 1.731 us/op
+Iteration   3: 1.731 us/op
+Iteration   4: 1.755 us/op
+Iteration   5: 1.750 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello":
+  1.798 ±(99.9%) 0.101 us/op [Average]
+  (min, avg, max) = (1.729, 1.798, 1.911), stdev = 0.067
+  CI (99.9%): [1.698, 1.899] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello
+# Parameters: (percentualeProdottiPresenti = 50, prodottiNelCarrello = 1000)
+
+# Run progress: 83.72% complete, ETA 00:02:26
+# Fork: 1 of 2
+# Warmup Iteration   1: 21.381 us/op
+# Warmup Iteration   2: 19.354 us/op
+# Warmup Iteration   3: 19.583 us/op
+# Warmup Iteration   4: 19.831 us/op
+# Warmup Iteration   5: 19.230 us/op
+Iteration   1: 19.778 us/op
+Iteration   2: 20.406 us/op
+Iteration   3: 19.317 us/op
+Iteration   4: 19.778 us/op
+Iteration   5: 19.297 us/op
+
+# Run progress: 84.88% complete, ETA 00:02:15
+# Fork: 2 of 2
+# Warmup Iteration   1: 25.197 us/op
+# Warmup Iteration   2: 19.914 us/op
+# Warmup Iteration   3: 20.206 us/op
+# Warmup Iteration   4: 19.923 us/op
+# Warmup Iteration   5: 19.850 us/op
+Iteration   1: 20.141 us/op
+Iteration   2: 19.335 us/op
+Iteration   3: 19.586 us/op
+Iteration   4: 19.807 us/op
+Iteration   5: 19.598 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.SessionCarrelloRealeBenchmark.getRealCarrello":
+  19.704 ±(99.9%) 0.548 us/op [Average]
+  (min, avg, max) = (19.297, 19.704, 20.406), stdev = 0.362
+  CI (99.9%): [19.156, 20.252] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiAbbonamento
+# Parameters: (numeroDisposizioni = 10)
+
+# Run progress: 86.05% complete, ETA 00:02:05
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.180 us/op
+# Warmup Iteration   2: 0.172 us/op
+# Warmup Iteration   3: 0.170 us/op
+# Warmup Iteration   4: 0.169 us/op
+# Warmup Iteration   5: 0.167 us/op
+Iteration   1: 0.168 us/op
+Iteration   2: 0.169 us/op
+Iteration   3: 0.170 us/op
+Iteration   4: 0.169 us/op
+Iteration   5: 0.169 us/op
+
+# Run progress: 87.21% complete, ETA 00:01:54
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.203 us/op
+# Warmup Iteration   2: 0.193 us/op
+# Warmup Iteration   3: 0.187 us/op
+# Warmup Iteration   4: 0.187 us/op
+# Warmup Iteration   5: 0.192 us/op
+Iteration   1: 0.189 us/op
+Iteration   2: 0.189 us/op
+Iteration   3: 0.194 us/op
+Iteration   4: 0.186 us/op
+Iteration   5: 0.186 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiAbbonamento":
+  0.179 ±(99.9%) 0.016 us/op [Average]
+  (min, avg, max) = (0.168, 0.179, 0.194), stdev = 0.011
+  CI (99.9%): [0.162, 0.195] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiAbbonamento
+# Parameters: (numeroDisposizioni = 100)
+
+# Run progress: 88.37% complete, ETA 00:01:44
+# Fork: 1 of 2
+# Warmup Iteration   1: 2.717 us/op
+# Warmup Iteration   2: 2.672 us/op
+# Warmup Iteration   3: 2.549 us/op
+# Warmup Iteration   4: 2.522 us/op
+# Warmup Iteration   5: 2.534 us/op
+Iteration   1: 2.764 us/op
+Iteration   2: 2.593 us/op
+Iteration   3: 2.554 us/op
+Iteration   4: 2.521 us/op
+Iteration   5: 2.531 us/op
+
+# Run progress: 89.53% complete, ETA 00:01:33
+# Fork: 2 of 2
+# Warmup Iteration   1: 3.164 us/op
+# Warmup Iteration   2: 2.670 us/op
+# Warmup Iteration   3: 2.627 us/op
+# Warmup Iteration   4: 2.539 us/op
+# Warmup Iteration   5: 2.523 us/op
+Iteration   1: 2.541 us/op
+Iteration   2: 2.631 us/op
+Iteration   3: 2.552 us/op
+Iteration   4: 2.538 us/op
+Iteration   5: 2.704 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiAbbonamento":
+  2.593 ±(99.9%) 0.124 us/op [Average]
+  (min, avg, max) = (2.521, 2.593, 2.764), stdev = 0.082
+  CI (99.9%): [2.469, 2.717] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiAbbonamento
+# Parameters: (numeroDisposizioni = 1000)
+
+# Run progress: 90.70% complete, ETA 00:01:23
+# Fork: 1 of 2
+# Warmup Iteration   1: 36.339 us/op
+# Warmup Iteration   2: 35.480 us/op
+# Warmup Iteration   3: 34.114 us/op
+# Warmup Iteration   4: 34.409 us/op
+# Warmup Iteration   5: 34.119 us/op
+Iteration   1: 34.246 us/op
+Iteration   2: 35.322 us/op
+Iteration   3: 34.030 us/op
+Iteration   4: 34.642 us/op
+Iteration   5: 33.736 us/op
+
+# Run progress: 91.86% complete, ETA 00:01:13
+# Fork: 2 of 2
+# Warmup Iteration   1: 34.863 us/op
+# Warmup Iteration   2: 33.368 us/op
+# Warmup Iteration   3: 33.016 us/op
+# Warmup Iteration   4: 33.233 us/op
+# Warmup Iteration   5: 33.041 us/op
+Iteration   1: 33.750 us/op
+Iteration   2: 34.940 us/op
+Iteration   3: 33.609 us/op
+Iteration   4: 33.407 us/op
+Iteration   5: 34.559 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiAbbonamento":
+  34.224 ±(99.9%) 0.950 us/op [Average]
+  (min, avg, max) = (33.407, 34.224, 35.322), stdev = 0.628
+  CI (99.9%): [33.274, 35.174] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiOrdine
+# Parameters: (numeroComposizioni = 10)
+
+# Run progress: 93.02% complete, ETA 00:01:02
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.209 us/op
+# Warmup Iteration   2: 0.192 us/op
+# Warmup Iteration   3: 0.187 us/op
+# Warmup Iteration   4: 0.197 us/op
+# Warmup Iteration   5: 0.189 us/op
+Iteration   1: 0.192 us/op
+Iteration   2: 0.189 us/op
+Iteration   3: 0.193 us/op
+Iteration   4: 0.188 us/op
+Iteration   5: 0.193 us/op
+
+# Run progress: 94.19% complete, ETA 00:00:52
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.205 us/op
+# Warmup Iteration   2: 0.197 us/op
+# Warmup Iteration   3: 0.197 us/op
+# Warmup Iteration   4: 0.185 us/op
+# Warmup Iteration   5: 0.197 us/op
+Iteration   1: 0.190 us/op
+Iteration   2: 0.185 us/op
+Iteration   3: 0.183 us/op
+Iteration   4: 0.185 us/op
+Iteration   5: 0.188 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiOrdine":
+  0.189 ±(99.9%) 0.005 us/op [Average]
+  (min, avg, max) = (0.183, 0.189, 0.193), stdev = 0.003
+  CI (99.9%): [0.183, 0.194] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiOrdine
+# Parameters: (numeroComposizioni = 100)
+
+# Run progress: 95.35% complete, ETA 00:00:41
+# Fork: 1 of 2
+# Warmup Iteration   1: 2.800 us/op
+# Warmup Iteration   2: 2.548 us/op
+# Warmup Iteration   3: 2.515 us/op
+# Warmup Iteration   4: 2.509 us/op
+# Warmup Iteration   5: 2.555 us/op
+Iteration   1: 2.510 us/op
+Iteration   2: 2.506 us/op
+Iteration   3: 2.538 us/op
+Iteration   4: 2.556 us/op
+Iteration   5: 2.519 us/op
+
+# Run progress: 96.51% complete, ETA 00:00:31
+# Fork: 2 of 2
+# Warmup Iteration   1: 2.646 us/op
+# Warmup Iteration   2: 2.545 us/op
+# Warmup Iteration   3: 2.485 us/op
+# Warmup Iteration   4: 2.487 us/op
+# Warmup Iteration   5: 2.539 us/op
+Iteration   1: 2.494 us/op
+Iteration   2: 2.516 us/op
+Iteration   3: 2.485 us/op
+Iteration   4: 2.536 us/op
+Iteration   5: 2.510 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiOrdine":
+  2.517 ±(99.9%) 0.032 us/op [Average]
+  (min, avg, max) = (2.485, 2.517, 2.556), stdev = 0.021
+  CI (99.9%): [2.485, 2.549] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.13.0.2, OpenJDK 64-Bit Server VM, 21.0.13.0.2+1-LTS
+# VM invoker: C:\Users\pasquale\.jdks\ms-21.0.13.0.2\bin\java.exe
+# VM options: -Djmh.ignoreLock=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiOrdine
+# Parameters: (numeroComposizioni = 1000)
+
+# Run progress: 97.67% complete, ETA 00:00:20
+# Fork: 1 of 2
+# Warmup Iteration   1: 34.008 us/op
+# Warmup Iteration   2: 32.409 us/op
+# Warmup Iteration   3: 31.261 us/op
+# Warmup Iteration   4: 32.536 us/op
+# Warmup Iteration   5: 31.833 us/op
+Iteration   1: 31.559 us/op
+Iteration   2: 33.815 us/op
+Iteration   3: 32.583 us/op
+Iteration   4: 31.851 us/op
+Iteration   5: 31.575 us/op
+
+# Run progress: 98.84% complete, ETA 00:00:10
+# Fork: 2 of 2
+# Warmup Iteration   1: 34.684 us/op
+# Warmup Iteration   2: 32.359 us/op
+# Warmup Iteration   3: 31.981 us/op
+# Warmup Iteration   4: 33.342 us/op
+# Warmup Iteration   5: 32.591 us/op
+Iteration   1: 33.564 us/op
+Iteration   2: 33.189 us/op
+Iteration   3: 32.995 us/op
+Iteration   4: 32.247 us/op
+Iteration   5: 32.526 us/op
+
+
+Result "it.unisa.greenbottle.benchmark.WrapperBenchmark.getProdottiOrdine":
+  32.591 ±(99.9%) 1.207 us/op [Average]
+  (min, avg, max) = (31.559, 32.591, 33.815), stdev = 0.798
+  CI (99.9%): [31.384, 33.797] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:14:57
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                                     (conCategoria)  (lunghezzaTesto)  (numeroComposizioni)  (numeroDisposizioni)  (percentualeProdottiPresenti)  (prodottiNelCarrello)  Mode  Cnt     Score     Error  Units
+ComposizioneHashSetBenchmark.inserisciComposizioniConId                  N/A               N/A                    10                   N/A                            N/A                    N/A  avgt   10     0.123 ±   0.002  us/op
+ComposizioneHashSetBenchmark.inserisciComposizioniConId                  N/A               N/A                   100                   N/A                            N/A                    N/A  avgt   10     1.618 ±   0.147  us/op
+ComposizioneHashSetBenchmark.inserisciComposizioniConId                  N/A               N/A                  1000                   N/A                            N/A                    N/A  avgt   10    18.067 ±   3.911  us/op
+ComposizioneHashSetBenchmark.inserisciComposizioniTransienti             N/A               N/A                    10                   N/A                            N/A                    N/A  avgt   10     0.253 ±   0.013  us/op
+ComposizioneHashSetBenchmark.inserisciComposizioniTransienti             N/A               N/A                   100                   N/A                            N/A                    N/A  avgt   10    19.001 ±   0.684  us/op
+ComposizioneHashSetBenchmark.inserisciComposizioniTransienti             N/A               N/A                  1000                   N/A                            N/A                    N/A  avgt   10  1602.135 ± 165.486  us/op
+EncryptorUtilBenchmark.decrypt                                           N/A                 8                   N/A                   N/A                            N/A                    N/A  avgt   10     0.801 ±   0.033  us/op
+EncryptorUtilBenchmark.decrypt                                           N/A                64                   N/A                   N/A                            N/A                    N/A  avgt   10     0.848 ±   0.029  us/op
+EncryptorUtilBenchmark.decrypt                                           N/A               512                   N/A                   N/A                            N/A                    N/A  avgt   10     1.238 ±   0.167  us/op
+EncryptorUtilBenchmark.encrypt                                           N/A                 8                   N/A                   N/A                            N/A                    N/A  avgt   10     0.757 ±   0.036  us/op
+EncryptorUtilBenchmark.encrypt                                           N/A                64                   N/A                   N/A                            N/A                    N/A  avgt   10     0.781 ±   0.006  us/op
+EncryptorUtilBenchmark.encrypt                                           N/A               512                   N/A                   N/A                            N/A                    N/A  avgt   10     1.252 ±   0.238  us/op
+ProdottoHashingBenchmark.equalsProdotti                                false               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10    24.291 ±   2.029  ns/op
+ProdottoHashingBenchmark.equalsProdotti                                 true               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10    46.616 ±  36.406  ns/op
+ProdottoHashingBenchmark.hashCodeProdotto                              false               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10    24.761 ±   2.500  ns/op
+ProdottoHashingBenchmark.hashCodeProdotto                               true               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10    24.782 ±   1.546  ns/op
+ProdottoHashingBenchmark.lookupConChiaveId                             false               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10     2.773 ±   0.049  ns/op
+ProdottoHashingBenchmark.lookupConChiaveId                              true               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10     2.790 ±   0.126  ns/op
+ProdottoHashingBenchmark.lookupConChiaveProdotto                       false               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10    55.044 ±   1.578  ns/op
+ProdottoHashingBenchmark.lookupConChiaveProdotto                        true               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10    55.784 ±   1.158  ns/op
+RegistrazioneFormBenchmark.validateFormNonValido                         N/A               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10     4.650 ±   0.157  us/op
+RegistrazioneFormBenchmark.validateFormValido                            N/A               N/A                   N/A                   N/A                            N/A                    N/A  avgt   10     5.967 ±   0.229  us/op
+SessionCarrelloBenchmark.addToCarrelloProdottoEsistente                  N/A               N/A                   N/A                   N/A                            N/A                      1  avgt   10    15.039 ±   0.110  ns/op
+SessionCarrelloBenchmark.addToCarrelloProdottoEsistente                  N/A               N/A                   N/A                   N/A                            N/A                     10  avgt   10    15.357 ±   0.495  ns/op
+SessionCarrelloBenchmark.addToCarrelloProdottoEsistente                  N/A               N/A                   N/A                   N/A                            N/A                    100  avgt   10    15.566 ±   1.012  ns/op
+SessionCarrelloBenchmark.clearCarrello                                   N/A               N/A                   N/A                   N/A                            N/A                      1  avgt   10    27.765 ±   0.372  ns/op
+SessionCarrelloBenchmark.clearCarrello                                   N/A               N/A                   N/A                   N/A                            N/A                     10  avgt   10    27.990 ±   0.622  ns/op
+SessionCarrelloBenchmark.clearCarrello                                   N/A               N/A                   N/A                   N/A                            N/A                    100  avgt   10    90.244 ±   4.003  ns/op
+SessionCarrelloBenchmark.removeFromCarrello                              N/A               N/A                   N/A                   N/A                            N/A                      1  avgt   10    25.589 ±   0.880  ns/op
+SessionCarrelloBenchmark.removeFromCarrello                              N/A               N/A                   N/A                   N/A                            N/A                     10  avgt   10    25.354 ±   0.612  ns/op
+SessionCarrelloBenchmark.removeFromCarrello                              N/A               N/A                   N/A                   N/A                            N/A                    100  avgt   10    26.867 ±   5.187  ns/op
+SessionCarrelloRealeBenchmark.getRealCarrello                            N/A               N/A                   N/A                   N/A                            100                     10  avgt   10     0.223 ±   0.008  us/op
+SessionCarrelloRealeBenchmark.getRealCarrello                            N/A               N/A                   N/A                   N/A                            100                    100  avgt   10     2.937 ±   0.092  us/op
+SessionCarrelloRealeBenchmark.getRealCarrello                            N/A               N/A                   N/A                   N/A                            100                   1000  avgt   10    39.620 ±   2.292  us/op
+SessionCarrelloRealeBenchmark.getRealCarrello                            N/A               N/A                   N/A                   N/A                             50                     10  avgt   10     0.217 ±   0.015  us/op
+SessionCarrelloRealeBenchmark.getRealCarrello                            N/A               N/A                   N/A                   N/A                             50                    100  avgt   10     1.798 ±   0.101  us/op
+SessionCarrelloRealeBenchmark.getRealCarrello                            N/A               N/A                   N/A                   N/A                             50                   1000  avgt   10    19.704 ±   0.548  us/op
+WrapperBenchmark.getProdottiAbbonamento                                  N/A               N/A                   N/A                    10                            N/A                    N/A  avgt   10     0.179 ±   0.016  us/op
+WrapperBenchmark.getProdottiAbbonamento                                  N/A               N/A                   N/A                   100                            N/A                    N/A  avgt   10     2.593 ±   0.124  us/op
+WrapperBenchmark.getProdottiAbbonamento                                  N/A               N/A                   N/A                  1000                            N/A                    N/A  avgt   10    34.224 ±   0.950  us/op
+WrapperBenchmark.getProdottiOrdine                                       N/A               N/A                    10                   N/A                            N/A                    N/A  avgt   10     0.189 ±   0.005  us/op
+WrapperBenchmark.getProdottiOrdine                                       N/A               N/A                   100                   N/A                            N/A                    N/A  avgt   10     2.517 ±   0.032  us/op
+WrapperBenchmark.getProdottiOrdine                                       N/A               N/A                  1000                   N/A                            N/A                    N/A  avgt   10    32.591 ±   1.207  us/op
