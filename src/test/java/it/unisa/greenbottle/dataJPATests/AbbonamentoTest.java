@@ -1,13 +1,16 @@
 package it.unisa.greenbottle.dataJPATests;
 
-import it.unisa.greenbottle.storage.abbonamentoStorage.dao.AbbonamentoDao;
-import it.unisa.greenbottle.storage.abbonamentoStorage.dao.DisposizioneDao;
-import it.unisa.greenbottle.storage.abbonamentoStorage.entity.Abbonamento;
-import it.unisa.greenbottle.storage.abbonamentoStorage.entity.Disposizione;
-import it.unisa.greenbottle.storage.catalogoStorage.dao.CategoriaDao;
-import it.unisa.greenbottle.storage.catalogoStorage.dao.ProdottoDao;
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Categoria;
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Prodotto;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import it.unisa.greenbottle.storage.abbonamento.dao.AbbonamentoDao;
+import it.unisa.greenbottle.storage.abbonamento.dao.DisposizioneDao;
+import it.unisa.greenbottle.storage.abbonamento.entity.Abbonamento;
+import it.unisa.greenbottle.storage.abbonamento.entity.Disposizione;
+import it.unisa.greenbottle.storage.catalogo.dao.CategoriaDao;
+import it.unisa.greenbottle.storage.catalogo.dao.ProdottoDao;
+import it.unisa.greenbottle.storage.catalogo.entity.Categoria;
+import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -20,7 +23,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class AbbonamentoTest {
+class AbbonamentoTest {
   @Autowired
   private AbbonamentoDao abbonamentoDao;
   @Autowired
@@ -31,7 +34,7 @@ public class AbbonamentoTest {
   private CategoriaDao categoriaDao;
 
   @Test
-  public void abbonamentiTier() {
+  void abbonamentiTier() {
     Abbonamento abbonamento1 = new Abbonamento(Abbonamento.TipoAbbonamento.BRONZE,
         Abbonamento.RinnovoAbbonamento.SEMESTRALE, Abbonamento.FrequenzaAbbonamento.MENSILE, 100f);
     Abbonamento abbonamento2 = new Abbonamento(Abbonamento.TipoAbbonamento.SILVER,
@@ -67,7 +70,8 @@ public class AbbonamentoTest {
       disposizione.put(abbonamento, disposizioneDao.findDisposizioneByAbbonamento(abbonamento));
     }
 
-    System.out.println(disposizione);
-    assert true;
+    assertFalse(disposizione.isEmpty());
+    assertEquals(1, disposizione.size());
+    assertEquals(3, disposizione.get(abbonamento1).size());
   }
 }

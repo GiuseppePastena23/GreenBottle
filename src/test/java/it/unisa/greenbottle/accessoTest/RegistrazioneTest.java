@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import it.unisa.greenbottle.storage.accessoStorage.dao.ClienteDao;
+import it.unisa.greenbottle.storage.accesso.dao.ClienteDao;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RegistrazioneTest {
+class RegistrazioneTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -29,31 +29,31 @@ public class RegistrazioneTest {
   private ClienteDao clienteDao;
 
   @Test
-  public void formatoNomeErrato() throws Exception {
+  void formatoNomeErrato() throws Exception {
     testRegistrazione("Gian@!@Carlo", "Toronto", "GiancarloToronto1966@gmail.com", "GiancoToro66!",
         status().isBadRequest(), "Nome non rispetta il formato.");
   }
 
   @Test
-  public void formatoCognomeErrato() throws Exception {
+  void formatoCognomeErrato() throws Exception {
     testRegistrazione("Giancarlo", "Toron@!@to", "GiancarloToronto1966@gmail.com", "GiancoToro66!",
         status().isBadRequest(), "Cognome non rispetta il formato.");
   }
 
   @Test
-  public void emailTroppoLunga() throws Exception {
+  void emailTroppoLunga() throws Exception {
     testRegistrazione("Giancarlo", "Toronto", "a".repeat(320) + "@gmail.com", "GiancoToro66!",
         status().isBadRequest(), "Dimensione Email errata.");
   }
 
   @Test
-  public void formatoEmailErrato() throws Exception {
+  void formatoEmailErrato() throws Exception {
     testRegistrazione("Giancarlo", "Toronto", "GiancarloToronto#1966@gmail.c", "GiancoToro66!",
         status().isBadRequest(), "Formato Email errato.");
   }
 
   @Test
-  public void formatoPasswordErrato() throws Exception {
+  void formatoPasswordErrato() throws Exception {
     testRegistrazione("Giancarlo", "Toronto", "GiancarloToronto1966@gmail.com", "ciao",
         status().isBadRequest(), "La Password deve contenere almeno una lettera minuscola, "
             + "una maiuscola, un numero, "
@@ -62,7 +62,7 @@ public class RegistrazioneTest {
   }
 
   @Test
-  public void registrazioneEffettuata() throws Exception {
+  void registrazioneEffettuata() throws Exception {
     when(clienteDao.findClienteByEmail("GiancarloToronto1966@example.com")).thenReturn(
         Optional.empty());
 
