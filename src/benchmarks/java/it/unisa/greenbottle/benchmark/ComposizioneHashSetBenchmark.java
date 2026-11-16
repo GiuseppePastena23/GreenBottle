@@ -1,7 +1,7 @@
 package it.unisa.greenbottle.benchmark;
 
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Prodotto;
-import it.unisa.greenbottle.storage.ordineStorage.entity.Composizione;
+import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
+import it.unisa.greenbottle.storage.ordine.entity.Composizione;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

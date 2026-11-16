@@ -1,7 +1,7 @@
 package it.unisa.greenbottle.benchmark;
 
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Categoria;
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Prodotto;
+import it.unisa.greenbottle.storage.catalogo.entity.Categoria;
+import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -23,8 +23,8 @@ import org.openjdk.jmh.annotations.Warmup;
  * Lombok ({@code @Data}) su {@link Prodotto}.
  *
  * <p>Nel codice di produzione {@code Prodotto} viene usato come chiave di
- * {@code HashMap} in più punti ({@link it.unisa.greenbottle.controller.ordineControl.util.OrdineWrapper},
- * {@link it.unisa.greenbottle.controller.abbonamentoControl.util.AbbonamentoWrapper},
+ * {@code HashMap} in più punti ({@link it.unisa.greenbottle.controller.ordine.util.OrdineWrapper},
+ * {@link it.unisa.greenbottle.controller.abbonamento.util.AbbonamentoWrapper},
  * {@code SessionCarrello}). Con {@code @Data} Lombok genera un hashCode che
  * percorre <em>tutti</em> i campi, compreso il blob {@code byte[] img}, e un
  * equals che confronta anch'esso tutti i campi, ricorsivamente sulla

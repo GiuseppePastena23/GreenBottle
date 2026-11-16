@@ -1,8 +1,8 @@
 package it.unisa.greenbottle.benchmark;
 
-import it.unisa.greenbottle.controller.ordineControl.util.SessionCarrello;
-import it.unisa.greenbottle.storage.catalogoStorage.dao.ProdottoDao;
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Prodotto;
+import it.unisa.greenbottle.controller.ordine.util.SessionCarrello;
+import it.unisa.greenbottle.storage.catalogo.dao.ProdottoDao;
+import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
@@ -78,8 +78,7 @@ public class SessionCarrelloRealeBenchmark {
         }
       }
 
-      carrello = new SessionCarrello();
-      carrello.setProdottoDao(daoInMemoria(catalogo));
+      carrello = new SessionCarrello(daoInMemoria(catalogo));
       for (long id = 1; id <= prodottiNelCarrello; id++) {
         carrello.addToCarrello(id, 1);
       }
@@ -125,6 +124,18 @@ public class SessionCarrelloRealeBenchmark {
           }
           if ("findById".equals(metodo.getName())) {
             return Optional.ofNullable(catalogo.get((Long) argomenti[0]));
+          }
+          if ("findAllById".equals(metodo.getName())) {
+            @SuppressWarnings("unchecked")
+            final Iterable<Long> ids = (Iterable<Long>) argomenti[0];
+            final java.util.List<Prodotto> result = new java.util.ArrayList<>();
+            for (final Long id : ids) {
+              final Prodotto p = catalogo.get(id);
+              if (p != null) {
+                result.add(p);
+              }
+            }
+            return result;
           }
           throw new UnsupportedOperationException(
               "Metodo non previsto dal benchmark: " + metodo.getName());
