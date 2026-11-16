@@ -1,0 +1,13 @@
+target/
+.git/
+.github/
+.idea/
+.vscode/
+docs/
+projectDocs/
+*.md
+.gitignore
+.gitattributes
+google_checks.xml
+start.bat
+.env

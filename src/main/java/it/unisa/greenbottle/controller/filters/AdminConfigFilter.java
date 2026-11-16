@@ -1,6 +1,6 @@
 package it.unisa.greenbottle.controller.filters;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,11 +9,10 @@ import org.springframework.context.annotation.Configuration;
  * Classe di configurazione del filtro per l'amministratore.
  */
 @Configuration
+@RequiredArgsConstructor
 public class AdminConfigFilter {
 
-  @Autowired
-  private AdminFilter adminFilter;
-
+  private final AdminFilter adminFilter;
 
   /**
    * Metodo per la creazione del filtro per l'amministratore.
@@ -22,8 +21,7 @@ public class AdminConfigFilter {
    */
   @Bean
   public FilterRegistrationBean<AdminFilter> filterBeanAdmin() {
-    FilterRegistrationBean<AdminFilter> registrationBean
-        = new FilterRegistrationBean<>();
+    final FilterRegistrationBean<AdminFilter> registrationBean = new FilterRegistrationBean<>();
 
     registrationBean.setFilter(adminFilter);
     registrationBean.addUrlPatterns("/admin", "/admin/*");

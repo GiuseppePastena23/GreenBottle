@@ -14,7 +14,9 @@ JMH microbenchmarks live in `src/benchmarks/java`, compiled and shaded **only** 
   - `controller/<feature>/` — `@Controller`s, plus `form/` (form-backing objects) and `util/`.
   - `storage/<feature>/{dao,entity}` — Spring Data JPA repositories and `@Entity` classes.
 - Views live in `src/main/resources/templates/<Feature>View/*.html`; shared markup in
-  `templates/fragments/`. Controllers return view names as strings, e.g. `"/CatalogoView/Home"`.
+  `templates/fragments/`. Controllers return view names as strings **without a leading slash**,
+  e.g. `"CatalogoView/Home"` — a leading slash yields `classpath:/templates//...`, which resolves
+  on the exploded classpath but fails inside the packaged jar.
 - The only JSON/byte endpoints are two `@RestController`s streaming images: `/productImg`
   (`RenderImg`) and `/userImg` (`RenderCliente`, which reads the fallback PNG from
   `src/main/resources/...` as a filesystem path). Everything else is MVC + redirects.
@@ -41,3 +43,6 @@ JMH microbenchmarks live in `src/benchmarks/java`, compiled and shaded **only** 
   has process docs. Don't regenerate or tidy them as part of a normal change.
 - README run steps are stale (typo `./mwnw`, jar name `GreenBottle-1.0.jar`, en-dash JVM args) —
   trust `pom.xml` and this file.
+
+
+

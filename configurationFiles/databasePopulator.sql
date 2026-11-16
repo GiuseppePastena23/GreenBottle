@@ -62,7 +62,9 @@ UNLOCK TABLES;
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (0,0,NULL,2,NULL,'Rossi','Mario','m@gmail.com','1FU7WYQZftZbHQuBb3M5Tw==',NULL);
+-- Password (in chiaro, solo per ambienti di sviluppo): asdfAsdf123@
+-- Cifrata con AES/GCM usando GREENBOTTLE_SECURITY_ENCRYPTION_KEY.
+INSERT INTO `cliente` VALUES (0,0,NULL,2,NULL,'Rossi','Mario','m@gmail.com','aQZOxi7XE8EktLLyAAnx5sCI+0V7f9pOpYH5g48QYkU9E0/aGXnGcg==',NULL);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
