@@ -1,7 +1,7 @@
 package it.unisa.greenbottle.controller.catalogo;
 
 import it.unisa.greenbottle.storage.catalogo.dao.ProdottoDao;
-import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
+import it.unisa.greenbottle.storage.catalogo.dto.ProdottoDettaglio;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class ProdottoController {
    */
   @GetMapping
   public ResponseEntity<Object> get(@RequestParam final Long id) {
-    final Optional<Prodotto> prodotto = prodottoDao.findProdottoById(id);
+    final Optional<ProdottoDettaglio> prodotto = prodottoDao.findDettaglioById(id);
     if (prodotto.isEmpty()) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body("Errore: Prodotto non trovato");

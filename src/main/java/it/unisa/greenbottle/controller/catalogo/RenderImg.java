@@ -1,7 +1,6 @@
 package it.unisa.greenbottle.controller.catalogo;
 
 import it.unisa.greenbottle.storage.catalogo.dao.ProdottoDao;
-import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -34,11 +33,14 @@ public class RenderImg {
   private static final int MAX_SIZE = 1000;
   private static final int CACHE_MAX_ENTRIES = 300;
   private static final String CACHE_CONTROL = "public, max-age=604800";
+  private static final String CONTENT_TYPE = "image/jpeg";
 
   /**
-   * Cache delle miniature gia calcolate (LRU, al massimo 300 elementi).
+   * Cache delle immagini gia calcolate (originali e miniature), LRU con al massimo
+   * CACHE_MAX_ENTRIES elementi. La chiave e l'id del prodotto, eventualmente seguito
+   * dalla misura della miniatura: una richiesta gia in cache non interroga il database.
    */
-  private final Map<String, byte[]> thumbnails = Collections.synchronizedMap(
+  private final Map<String, byte[]> immagini = Collections.synchronizedMap(
       new LinkedHashMap<>(16, 0.75f, true) {
         @Override
         protected boolean removeEldestEntry(final Map.Entry<String, byte[]> eldest) {
@@ -60,43 +62,41 @@ public class RenderImg {
   public ResponseEntity<byte[]> getImage(@RequestParam("id") final Long id,
                                          @RequestParam(value = "w", required = false) final Integer width,
                                          @RequestParam(value = "h", required = false) final Integer height) {
-    final Optional<Prodotto> opPro = prodottoDao.findProdottoById(id);
-    if (opPro.isEmpty() || opPro.get().getImg() == null) {
+    final Integer larghezza = width == null ? null : clamp(width);
+    final Integer altezza = height == null ? null : clamp(height);
+    final String chiave = larghezza == null
+        ? String.valueOf(id)
+        : id + ":" + larghezza + "x" + (altezza == null ? 0 : altezza);
+
+    final byte[] cached = immagini.get(chiave);
+    if (cached != null) {
+      return risposta(cached);
+    }
+
+    final Optional<byte[]> opImmagine = prodottoDao.findImgById(id);
+    if (opImmagine.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    final Prodotto prodotto = opPro.get();
-    byte[] image = prodotto.getImg();
-    if (width != null) {
-      final int w = clamp(width);
-      final int h = height != null ? clamp(height) : 0;
-      image = thumbnail(id, image, w, h);
-    }
-
-    final HttpHeaders headers = new HttpHeaders();
-    headers.add(HttpHeaders.CONTENT_TYPE, "image/jpeg");
-    headers.add(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL);
-    return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    final byte[] originale = opImmagine.get();
+    final byte[] immagine = larghezza == null
+        ? originale
+        : resize(originale, larghezza, altezza == null ? 0 : altezza);
+    immagini.put(chiave, immagine);
+    return risposta(immagine);
   }
 
   /**
-   * Restituisce la miniatura richiesta, calcolandola solo la prima volta.
+   * Costruisce la risposta HTTP con gli header di cache dell'immagine.
    *
-   * @param id       id del prodotto
-   * @param original immagine originale
-   * @param width    larghezza desiderata
-   * @param height   altezza desiderata, 0 per mantenerne le proporzioni
-   * @return byte della miniatura
+   * @param immagine byte dell'immagine
+   * @return risposta HTTP 200 con l'immagine
    */
-  private byte[] thumbnail(final Long id, final byte[] original, final int width, final int height) {
-    final String key = id + ":" + width + "x" + height;
-    final byte[] cached = thumbnails.get(key);
-    if (cached != null) {
-      return cached;
-    }
-    final byte[] scaled = resize(original, width, height);
-    thumbnails.put(key, scaled);
-    return scaled;
+  private ResponseEntity<byte[]> risposta(final byte[] immagine) {
+    final HttpHeaders headers = new HttpHeaders();
+    headers.add(HttpHeaders.CONTENT_TYPE, CONTENT_TYPE);
+    headers.add(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL);
+    return new ResponseEntity<>(immagine, headers, HttpStatus.OK);
   }
 
   /**
