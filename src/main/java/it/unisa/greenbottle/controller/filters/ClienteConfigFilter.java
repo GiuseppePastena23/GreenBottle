@@ -1,6 +1,6 @@
 package it.unisa.greenbottle.controller.filters;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
  * Classe di configurazione del filtro per il cliente.
  */
 @Configuration
+@RequiredArgsConstructor
 public class ClienteConfigFilter {
 
-  @Autowired
-  private ClienteFilter clienteFilter;
+  private final ClienteFilter clienteFilter;
 
   /**
    * Metodo per la registrazione del filtro per il cliente.
@@ -21,7 +21,7 @@ public class ClienteConfigFilter {
    */
   @Bean
   public FilterRegistrationBean<ClienteFilter> filterBeanCliente() {
-    FilterRegistrationBean<ClienteFilter> registrationBean = new FilterRegistrationBean<>();
+    final FilterRegistrationBean<ClienteFilter> registrationBean = new FilterRegistrationBean<>();
 
     registrationBean.setFilter(clienteFilter);
     registrationBean.addUrlPatterns("/areaPersonale", "/areaPersonale/*", "/carrello");
