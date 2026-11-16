@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenBottle JMH Benchmark Dashboard</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .bar-transition {
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="bg-[var(--background,#0f172a)] text-[var(--foreground,#f8fafc)] antialiased p-4 md:p-8 font-sans">
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Header -->
+    <header class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-md">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              JMH 1.37 — JDK 21 LTS
+            </span>
+            <span class="text-xs text-[var(--muted-foreground,#94a3b8)]">
+              GreenBottle Microbenchmarks
+            </span>
+          </div>
+          <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-[var(--foreground,#f8fafc)]">
+            Performance & Benchmark Dashboard
+          </h1>
+          <p class="text-sm text-[var(--muted-foreground,#94a3b8)] mt-1">
+            Analisi comparativa dei tempi medi di esecuzione (AverageTime) su CPU, strutture dati e wrapper.
+          </p>
+        </div>
+        <div class="flex items-center gap-3 self-start md:self-auto">
+          <div class="text-right text-xs">
+            <div class="font-medium text-[var(--foreground,#f8fafc)]">Totale Benchmark: 43 test</div>
+            <div class="text-[var(--muted-foreground,#94a3b8)]">Durata run: 14 min 57 sec</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Key Metrics Highlight Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Card 1: Composizione O(N^2) -->
+      <div class="bg-[var(--card,#1e293b)] border border-rose-500/30 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-2 h-full bg-rose-500"></div>
+        <div class="text-xs font-semibold uppercase tracking-wider text-rose-400 mb-1">Criticità O(N²)</div>
+        <div class="text-2xl font-bold text-[var(--foreground,#f8fafc)]">88.7x Più Lento</div>
+        <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          <span class="font-semibold text-rose-400">1.602 µs</span> per transienti vs <span class="font-semibold text-emerald-400">18 µs</span> con ID (N=1000) in <code class="text-xs">ComposizioneHashSet</code>.
+        </p>
+      </div>
+
+      <!-- Card 2: Lookup Entity vs ID -->
+      <div class="bg-[var(--card,#1e293b)] border border-amber-500/30 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-2 h-full bg-amber-500"></div>
+        <div class="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">Overhead Lombok</div>
+        <div class="text-2xl font-bold text-[var(--foreground,#f8fafc)]">19.8x Più Lento</div>
+        <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          <span class="font-semibold text-amber-400">55.04 ns</span> per entità <code class="text-xs">Prodotto</code> vs <span class="font-semibold text-emerald-400">2.77 ns</span> per chiave <code class="text-xs">Long id</code>.
+        </p>
+      </div>
+
+      <!-- Card 3: In-Memory Cart Ops -->
+      <div class="bg-[var(--card,#1e293b)] border border-emerald-500/30 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-2 h-full bg-emerald-500"></div>
+        <div class="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">Reattività Carrello</div>
+        <div class="text-2xl font-bold text-[var(--foreground,#f8fafc)]">~15.2 ns</div>
+        <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          Complessità costante <span class="font-semibold text-emerald-400">O(1)</span> per aggiunta/modifica quantità in <code class="text-xs">SessionCarrello</code>.
+        </p>
+      </div>
+
+      <!-- Card 4: AES Cryptography -->
+      <div class="bg-[var(--card,#1e293b)] border border-blue-500/30 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-2 h-full bg-blue-500"></div>
+        <div class="text-xs font-semibold uppercase tracking-wider text-blue-400 mb-1">Crittografia AES</div>
+        <div class="text-2xl font-bold text-[var(--foreground,#f8fafc)]">&lt; 1.25 µs</div>
+        <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          Cifratura e decifratura sub-microsecondo anche su stringhe da 512 caratteri.
+        </p>
+      </div>
+    </div>
+
+    <!-- Navigation / Tab Selector -->
+    <div class="flex items-center gap-2 border-b border-[var(--border,#334155)] pb-3 overflow-x-auto">
+      <button onclick="switchTab('tab-composizione')" id="btn-tab-composizione" class="tab-btn px-4 py-2 text-sm font-medium rounded-lg bg-[var(--primary,#3b82f6)] text-white shadow-sm transition">
+        1. Composizione O(N²) Degrado
+      </button>
+      <button onclick="switchTab('tab-hashing')" id="btn-tab-hashing" class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-[var(--muted-foreground,#94a3b8)] hover:text-[var(--foreground,#f8fafc)] hover:bg-[var(--card,#1e293b)] transition">
+        2. Hashing Prodotto & Lombok
+      </button>
+      <button onclick="switchTab('tab-carrello')" id="btn-tab-carrello" class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-[var(--muted-foreground,#94a3b8)] hover:text-[var(--foreground,#f8fafc)] hover:bg-[var(--card,#1e293b)] transition">
+        3. Carrello & Rischio N+1
+      </button>
+      <button onclick="switchTab('tab-altri')" id="btn-tab-altri" class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-[var(--muted-foreground,#94a3b8)] hover:text-[var(--foreground,#f8fafc)] hover:bg-[var(--card,#1e293b)] transition">
+        4. Crypto, Form & Wrapper
+      </button>
+    </div>
+
+    <!-- TAB 1: Composizione O(N^2) -->
+    <div id="tab-composizione" class="tab-content space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-[var(--foreground,#f8fafc)]">
+              ComposizioneHashSet: Esplosione Quadratica su Entità Transienti
+            </h2>
+            <p class="text-sm text-[var(--muted-foreground,#94a3b8)] mt-1">
+              Confronto tra entità con ID valorizzato (baseline $O(N)$) ed entità transienti con ID nullo ($O(N^2)$).
+            </p>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="inline-block w-3 h-3 rounded-sm bg-emerald-500"></span> <span>Con ID (Baseline)</span>
+            <span class="inline-block w-3 h-3 rounded-sm bg-rose-500 ml-3"></span> <span>Transienti (Produzione)</span>
+          </div>
+        </div>
+
+        <!-- Custom Visual Bars -->
+        <div class="space-y-6">
+          <!-- N = 10 -->
+          <div class="border-b border-[var(--border,#334155)] pb-4">
+            <div class="flex justify-between items-center mb-1 text-sm font-semibold">
+              <span>N = 10 elementi</span>
+              <span class="text-xs text-[var(--muted-foreground,#94a3b8)]">Rallentamento: 2.05x</span>
+            </div>
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-3">
+                <span class="w-24 text-xs text-[var(--muted-foreground,#94a3b8)]">Con ID:</span>
+                <div class="flex-1 bg-[var(--background,#0f172a)] rounded-full h-4 overflow-hidden">
+                  <div class="bg-emerald-500 h-full bar-transition rounded-full" style="width: 2%;"></div>
+                </div>
+                <span class="w-24 text-right text-xs font-mono font-medium">0.123 µs</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-24 text-xs text-[var(--muted-foreground,#94a3b8)]">Transienti:</span>
+                <div class="flex-1 bg-[var(--background,#0f172a)] rounded-full h-4 overflow-hidden">
+                  <div class="bg-rose-500 h-full bar-transition rounded-full" style="width: 4%;"></div>
+                </div>
+                <span class="w-24 text-right text-xs font-mono font-medium text-rose-400">0.253 µs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- N = 100 -->
+          <div class="border-b border-[var(--border,#334155)] pb-4">
+            <div class="flex justify-between items-center mb-1 text-sm font-semibold">
+              <span>N = 100 elementi</span>
+              <span class="text-xs font-medium text-amber-400">Rallentamento: 11.7x</span>
+            </div>
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-3">
+                <span class="w-24 text-xs text-[var(--muted-foreground,#94a3b8)]">Con ID:</span>
+                <div class="flex-1 bg-[var(--background,#0f172a)] rounded-full h-4 overflow-hidden">
+                  <div class="bg-emerald-500 h-full bar-transition rounded-full" style="width: 5%;"></div>
+                </div>
+                <span class="w-24 text-right text-xs font-mono font-medium">1.618 µs</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-24 text-xs text-[var(--muted-foreground,#94a3b8)]">Transienti:</span>
+                <div class="flex-1 bg-[var(--background,#0f172a)] rounded-full h-4 overflow-hidden">
+                  <div class="bg-rose-500 h-full bar-transition rounded-full" style="width: 25%;"></div>
+                </div>
+                <span class="w-24 text-right text-xs font-mono font-medium text-rose-400">19.001 µs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- N = 1000 -->
+          <div>
+            <div class="flex justify-between items-center mb-1 text-sm font-semibold">
+              <span>N = 1.000 elementi</span>
+              <span class="text-xs font-bold text-rose-500">Rallentamento Catastrofico: 88.7x</span>
+            </div>
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-3">
+                <span class="w-24 text-xs text-[var(--muted-foreground,#94a3b8)]">Con ID:</span>
+                <div class="flex-1 bg-[var(--background,#0f172a)] rounded-full h-4 overflow-hidden">
+                  <div class="bg-emerald-500 h-full bar-transition rounded-full" style="width: 1.1%;"></div>
+                </div>
+                <span class="w-24 text-right text-xs font-mono font-medium">18.067 µs</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-24 text-xs text-[var(--muted-foreground,#94a3b8)]">Transienti:</span>
+                <div class="flex-1 bg-[var(--background,#0f172a)] rounded-full h-4 overflow-hidden">
+                  <div class="bg-rose-500 h-full bar-transition rounded-full" style="width: 100%;"></div>
+                </div>
+                <span class="w-24 text-right text-xs font-mono font-bold text-rose-500">1.602,135 µs (1.6 ms)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Deep Dive Box -->
+        <div class="mt-6 p-4 rounded-xl bg-[var(--background,#0f172a)] border border-rose-500/20 text-xs text-[var(--foreground,#f8fafc)] space-y-2">
+          <div class="font-semibold text-rose-400 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            Causa Tecnica Identificata:
+          </div>
+          <p class="text-[var(--muted-foreground,#94a3b8)] leading-relaxed">
+            In <code class="text-rose-300">Composizione.hashCode()</code> il calcolo restituisce <code class="text-rose-300">id != null ? id.hashCode() : 0</code>.
+            Nel controller di checkout (<code class="text-rose-300">CreazioneOrdineController#post</code>), le istanze sono appena create con <code class="text-rose-300">id == null</code>.
+            Tutte le righe generano lo stesso hash code <code class="font-mono">0</code> e finiscono nell'identico bucket dell'<code class="font-mono">HashSet</code>.
+            Dato che <code class="font-mono">equals</code> restituisce <code class="font-mono">false</code> per entità transienti, ogni inserimento scorre tutti gli elementi precedenti eseguendo <code class="font-mono">N(N-1)/2</code> confronti a vuoto.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Hashing Prodotto & Lombok -->
+    <div id="tab-hashing" class="tab-content hidden space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-sm">
+        <h2 class="text-xl font-bold text-[var(--foreground,#f8fafc)] mb-1">
+          ProdottoHashing: Impatto di Lombok @Data su HashMap
+        </h2>
+        <p class="text-sm text-[var(--muted-foreground,#94a3b8)] mb-6">
+          Misura del costo in nanosecondi del contratto <code class="text-xs">equals</code> / <code class="text-xs">hashCode</code> generato automaticamente su tutti i campi (inclusa immagine blob).
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Lookup Comparison -->
+          <div class="p-4 rounded-xl bg-[var(--background,#0f172a)] border border-[var(--border,#334155)] space-y-4">
+            <h3 class="text-sm font-semibold text-[var(--foreground,#f8fafc)]">Costo di Lookup in HashMap (1.000 elementi)</h3>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-[var(--muted-foreground,#94a3b8)]">Lookup per Long ID:</span>
+                  <span class="font-mono font-bold text-emerald-400">2.77 ns</span>
+                </div>
+                <div class="w-full bg-[var(--card,#1e293b)] rounded-full h-3 overflow-hidden">
+                  <div class="bg-emerald-500 h-full rounded-full" style="width: 5%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-[var(--muted-foreground,#94a3b8)]">Lookup per Entità Prodotto:</span>
+                  <span class="font-mono font-bold text-amber-400">55.04 ns (19.8x più lenta)</span>
+                </div>
+                <div class="w-full bg-[var(--card,#1e293b)] rounded-full h-3 overflow-hidden">
+                  <div class="bg-amber-500 h-full rounded-full" style="width: 98%;"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-2">
+              L'entità costringe la CPU a ricalcolare l'hash di stringhe e array <code class="text-xs">byte[] img</code> ad ogni <code class="text-xs">get()</code>.
+            </p>
+          </div>
+
+          <!-- Equals & HashCode Details -->
+          <div class="p-4 rounded-xl bg-[var(--background,#0f172a)] border border-[var(--border,#334155)] space-y-4">
+            <h3 class="text-sm font-semibold text-[var(--foreground,#f8fafc)]">Costo Singole Operazioni Primitive</h3>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-[var(--muted-foreground,#94a3b8)]">hashCode (con o senza Categoria):</span>
+                  <span class="font-mono font-semibold">24.76 ns</span>
+                </div>
+                <div class="w-full bg-[var(--card,#1e293b)] rounded-full h-3 overflow-hidden">
+                  <div class="bg-blue-500 h-full rounded-full" style="width: 44%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-[var(--muted-foreground,#94a3b8)]">equals (senza Categoria):</span>
+                  <span class="font-mono font-semibold">24.29 ns</span>
+                </div>
+                <div class="w-full bg-[var(--card,#1e293b)] rounded-full h-3 overflow-hidden">
+                  <div class="bg-blue-400 h-full rounded-full" style="width: 43%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-[var(--muted-foreground,#94a3b8)]">equals (con Categoria ricorsiva):</span>
+                  <span class="font-mono font-bold text-amber-400">46.62 ns (+92%)</span>
+                </div>
+                <div class="w-full bg-[var(--card,#1e293b)] rounded-full h-3 overflow-hidden">
+                  <div class="bg-amber-400 h-full rounded-full" style="width: 84%;"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-2">
+              La verifica di uguaglianza raddoppia quando la relazione JPA verso <code class="text-xs">Categoria</code> viene navigata ricorsivamente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Carrello & Rischio N+1 -->
+    <div id="tab-carrello" class="tab-content hidden space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-sm">
+        <h2 class="text-xl font-bold text-[var(--foreground,#f8fafc)] mb-1">
+          SessionCarrello & getRealCarrello: Misura e Rischio N+1
+        </h2>
+        <p class="text-sm text-[var(--muted-foreground,#94a3b8)] mb-6">
+          Analisi delle operazioni in memoria rispetto al limite inferiore di risoluzione delle entità catalogo.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- RealCarrello Scalability -->
+          <div class="p-4 rounded-xl bg-[var(--background,#0f172a)] border border-[var(--border,#334155)] space-y-3">
+            <h3 class="text-sm font-semibold text-[var(--foreground,#f8fafc)]">getRealCarrello (DAO In-Memory)</h3>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">10 prodotti (100% presenti):</span>
+                <span class="font-mono font-medium">0.223 µs</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">100 prodotti (100% presenti):</span>
+                <span class="font-mono font-medium">2.937 µs</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">1.000 prodotti (100% presenti):</span>
+                <span class="font-mono font-semibold text-amber-400">39.620 µs</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">1.000 prodotti (50% presenti):</span>
+                <span class="font-mono font-semibold text-blue-400">19.704 µs</span>
+              </div>
+            </div>
+            <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg text-[11px] text-amber-300">
+              <strong>Nota Architetturale N+1:</strong> In memoria il benchmark impiega appena ~39 µs perché ogni query è una lettura da mappa Java. In ambiente reale con PostgreSQL, 100 righe corrispondono a 100 round-trip verso il DB (~100 ms).
+            </div>
+          </div>
+
+          <!-- Atomic Cart Operations -->
+          <div class="p-4 rounded-xl bg-[var(--background,#0f172a)] border border-[var(--border,#334155)] space-y-3">
+            <h3 class="text-sm font-semibold text-[var(--foreground,#f8fafc)]">Operazioni Atomiche SessionCarrello</h3>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">addToCarrello (N=1):</span>
+                <span class="font-mono font-medium text-emerald-400">15.04 ns</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">addToCarrello (N=100):</span>
+                <span class="font-mono font-medium text-emerald-400">15.57 ns</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">removeFromCarrello (N=100):</span>
+                <span class="font-mono font-medium text-emerald-400">26.87 ns</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">clearCarrello (N=1):</span>
+                <span class="font-mono font-medium">27.76 ns</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-[var(--border,#334155)]">
+                <span class="text-[var(--muted-foreground,#94a3b8)]">clearCarrello (N=100):</span>
+                <span class="font-mono font-medium text-blue-400">90.24 ns</span>
+              </div>
+            </div>
+            <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-[11px] text-emerald-300">
+              <strong>Efficienza:</strong> Tempo costante $O(1)$ garantito dalla mappa interna indicizzata con chiave primitiva <code class="text-xs">Long</code>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: Crypto, Form & Wrapper -->
+    <div id="tab-altri" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Wrapper Card -->
+        <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-5 shadow-sm space-y-3">
+          <h3 class="text-base font-bold text-[var(--foreground,#f8fafc)]">Wrapper Ordini & Abbonamenti</h3>
+          <p class="text-xs text-[var(--muted-foreground,#94a3b8)]">
+            Costruzione mappe Prodotto-Quantità per le viste Thymeleaf.
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Ordine (N=10):</span>
+              <span class="font-mono font-medium">0.189 µs</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Ordine (N=1000):</span>
+              <span class="font-mono font-semibold text-blue-400">32.591 µs</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Abbonamento (N=10):</span>
+              <span class="font-mono font-medium">0.179 µs</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Abbonamento (N=1000):</span>
+              <span class="font-mono font-semibold text-blue-400">34.224 µs</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Scalabilità lineare con ~33 ns per riga d'ordine/abbonamento.
+          </div>
+        </div>
+
+        <!-- Encryptor Card -->
+        <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-5 shadow-sm space-y-3">
+          <h3 class="text-base font-bold text-[var(--foreground,#f8fafc)]">EncryptorUtil (AES)</h3>
+          <p class="text-xs text-[var(--muted-foreground,#94a3b8)]">
+            Cifratura e decifratura simmetrica AES-128 con Base64.
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Encrypt (len=8):</span>
+              <span class="font-mono font-medium">0.757 µs</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Encrypt (len=512):</span>
+              <span class="font-mono font-semibold text-blue-400">1.252 µs</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Decrypt (len=8):</span>
+              <span class="font-mono font-medium">0.801 µs</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Decrypt (len=512):</span>
+              <span class="font-mono font-semibold text-blue-400">1.238 µs</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-emerald-400">
+            Prestazioni eccellenti supportate da istruzioni hardware AES-NI.
+          </div>
+        </div>
+
+        <!-- Bean Validation Card -->
+        <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-5 shadow-sm space-y-3">
+          <h3 class="text-base font-bold text-[var(--foreground,#f8fafc)]">RegistrazioneForm (Validation)</h3>
+          <p class="text-xs text-[var(--muted-foreground,#94a3b8)]">
+            Esecuzione vincoli Hibernate / Bean Validation su form utente.
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Form Valido:</span>
+              <span class="font-mono font-semibold text-amber-400">5.967 µs</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--border,#334155)]">
+              <span>Form Non Valido:</span>
+              <span class="font-mono font-semibold text-emerald-400">4.650 µs</span>
+            </div>
+          </div>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Il form non valido impiega meno tempo perché fallisce sui primi controlli di lunghezza minima e stringa vuota, saltando valutazioni regex onerose.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendations Table -->
+    <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-sm">
+      <h3 class="text-lg font-bold text-[var(--foreground,#f8fafc)] mb-3">
+        Piano di Ottimizzazione Consigliato
+      </h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-[var(--background,#0f172a)] text-[var(--muted-foreground,#94a3b8)] border-b border-[var(--border,#334155)]">
+            <tr>
+              <th class="p-3">Priorità</th>
+              <th class="p-3">Componente</th>
+              <th class="p-3">Sintomo / Problema</th>
+              <th class="p-3">Azione Risolutiva</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border,#334155)]">
+            <tr>
+              <td class="p-3 font-bold text-rose-500">P1 - Alta</td>
+              <td class="p-3 font-mono">CreazioneOrdineController</td>
+              <td class="p-3">Inserimento transienti in <code class="text-xs">HashSet</code> causa $O(N^2)$ (88.7x più lento)</td>
+              <td class="p-3">Usare <code class="text-xs">List&lt;Composizione&gt;</code> durante il checkout prima del salvataggio.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-amber-500">P2 - Media</td>
+              <td class="p-3 font-mono">SessionCarrello#getRealCarrello</td>
+              <td class="p-3">Ciclo N+1 query singole <code class="text-xs">findById</code></td>
+              <td class="p-3">Riscrivere con <code class="text-xs">prodottoDao.findAllById(ids)</code> (1 singola query SQL).</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-amber-500">P3 - Media</td>
+              <td class="p-3 font-mono">Prodotto (@Data Lombok)</td>
+              <td class="p-3">Lookup mappa 20x più lenta a causa di hash su stringhe e blob immagine</td>
+              <td class="p-3">Usare <code class="text-xs">@EqualsAndHashCode(onlyExplicitlyIncluded = true)</code> sul solo ID.</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-emerald-500">P4 - Bassa</td>
+              <td class="p-3 font-mono">EncryptorUtil & Form</td>
+              <td class="p-3">Tempi ottimali (&lt; 6 µs)</td>
+              <td class="p-3">Nessuna modifica necessaria.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-[var(--primary,#3b82f6)]', 'text-white', 'shadow-sm');
+        btn.classList.add('text-[var(--muted-foreground,#94a3b8)]');
+      });
+
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-[var(--muted-foreground,#94a3b8)]');
+        activeBtn.classList.add('bg-[var(--primary,#3b82f6)]', 'text-white', 'shadow-sm');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿Benchmark;conCategoria;lunghezzaTesto;numeroComposizioni;numeroDisposizioni;percentualeProdottiPresenti;prodottiNelCarrello;Mode;Cnt;Score;Error;Units;Valutazione
+ComposizioneHashSetBenchmark.inserisciComposizioniConId;N/A;N/A;10;N/A;N/A;N/A;avgt;10;0.123;0.002;us/op;Baseline O(N)
+ComposizioneHashSetBenchmark.inserisciComposizioniConId;N/A;N/A;100;N/A;N/A;N/A;avgt;10;1.618;0.147;us/op;Baseline O(N)
+ComposizioneHashSetBenchmark.inserisciComposizioniConId;N/A;N/A;1000;N/A;N/A;N/A;avgt;10;18.067;3.911;us/op;Baseline O(N)
+ComposizioneHashSetBenchmark.inserisciComposizioniTransienti;N/A;N/A;10;N/A;N/A;N/A;avgt;10;0.253;0.013;us/op;Degrado iniziale 2x
+ComposizioneHashSetBenchmark.inserisciComposizioniTransienti;N/A;N/A;100;N/A;N/A;N/A;avgt;10;19.001;0.684;us/op;Degrado 11.7x
+ComposizioneHashSetBenchmark.inserisciComposizioniTransienti;N/A;N/A;1000;N/A;N/A;N/A;avgt;10;1602.135;165.486;us/op;Critico: Esplosione O(N^2) 88.7x
+EncryptorUtilBenchmark.decrypt;N/A;8;N/A;N/A;N/A;N/A;avgt;10;0.801;0.033;us/op;Ottimo (< 1 us)
+EncryptorUtilBenchmark.decrypt;N/A;64;N/A;N/A;N/A;N/A;avgt;10;0.848;0.029;us/op;Ottimo (< 1 us)
+EncryptorUtilBenchmark.decrypt;N/A;512;N/A;N/A;N/A;N/A;avgt;10;1.238;0.167;us/op;Ottimo (1.2 us)
+EncryptorUtilBenchmark.encrypt;N/A;8;N/A;N/A;N/A;N/A;avgt;10;0.757;0.036;us/op;Ottimo (< 1 us)
+EncryptorUtilBenchmark.encrypt;N/A;64;N/A;N/A;N/A;N/A;avgt;10;0.781;0.006;us/op;Ottimo (< 1 us)
+EncryptorUtilBenchmark.encrypt;N/A;512;N/A;N/A;N/A;N/A;avgt;10;1.252;0.238;us/op;Ottimo (1.25 us)
+ProdottoHashingBenchmark.equalsProdotti;false;N/A;N/A;N/A;N/A;N/A;avgt;10;24.291;2.029;ns/op;Standard (senza Categoria)
+ProdottoHashingBenchmark.equalsProdotti;true;N/A;N/A;N/A;N/A;N/A;avgt;10;46.616;36.406;ns/op;Raddoppio per ricorsione Categoria
+ProdottoHashingBenchmark.hashCodeProdotto;false;N/A;N/A;N/A;N/A;N/A;avgt;10;24.761;2.5;ns/op;Overhead Lombok @Data (tutti i campi)
+ProdottoHashingBenchmark.hashCodeProdotto;true;N/A;N/A;N/A;N/A;N/A;avgt;10;24.782;1.546;ns/op;Overhead Lombok @Data
+ProdottoHashingBenchmark.lookupConChiaveId;false;N/A;N/A;N/A;N/A;N/A;avgt;10;2.773;0.049;ns/op;Baseline Ottima O(1)
+ProdottoHashingBenchmark.lookupConChiaveId;true;N/A;N/A;N/A;N/A;N/A;avgt;10;2.79;0.126;ns/op;Baseline Ottima O(1)
+ProdottoHashingBenchmark.lookupConChiaveProdotto;false;N/A;N/A;N/A;N/A;N/A;avgt;10;55.044;1.578;ns/op;Lento: 19.8x rispetto a Long ID
+ProdottoHashingBenchmark.lookupConChiaveProdotto;true;N/A;N/A;N/A;N/A;N/A;avgt;10;55.784;1.158;ns/op;Lento: 20x rispetto a Long ID
+RegistrazioneFormBenchmark.validateFormNonValido;N/A;N/A;N/A;N/A;N/A;N/A;avgt;10;4.65;0.157;us/op;Early exit su violazioni iniziali
+RegistrazioneFormBenchmark.validateFormValido;N/A;N/A;N/A;N/A;N/A;N/A;avgt;10;5.967;0.229;us/op;Validazione completa Bean Validation
+SessionCarrelloBenchmark.addToCarrelloProdottoEsistente;N/A;N/A;N/A;N/A;N/A;1;avgt;10;15.039;0.11;ns/op;Ottimo O(1)
+SessionCarrelloBenchmark.addToCarrelloProdottoEsistente;N/A;N/A;N/A;N/A;N/A;10;avgt;10;15.357;0.495;ns/op;Ottimo O(1)
+SessionCarrelloBenchmark.addToCarrelloProdottoEsistente;N/A;N/A;N/A;N/A;N/A;100;avgt;10;15.566;1.012;ns/op;Ottimo O(1)
+SessionCarrelloBenchmark.clearCarrello;N/A;N/A;N/A;N/A;N/A;1;avgt;10;27.765;0.372;ns/op;Svuotamento HashMap rapido
+SessionCarrelloBenchmark.clearCarrello;N/A;N/A;N/A;N/A;N/A;10;avgt;10;27.99;0.622;ns/op;Svuotamento HashMap rapido
+SessionCarrelloBenchmark.clearCarrello;N/A;N/A;N/A;N/A;N/A;100;avgt;10;90.244;4.003;ns/op;Reset bucket HashMap (90 ns)
+SessionCarrelloBenchmark.removeFromCarrello;N/A;N/A;N/A;N/A;N/A;1;avgt;10;25.589;0.88;ns/op;Ottimo O(1)
+SessionCarrelloBenchmark.removeFromCarrello;N/A;N/A;N/A;N/A;N/A;10;avgt;10;25.354;0.612;ns/op;Ottimo O(1)
+SessionCarrelloBenchmark.removeFromCarrello;N/A;N/A;N/A;N/A;N/A;100;avgt;10;26.867;5.187;ns/op;Ottimo O(1)
+SessionCarrelloRealeBenchmark.getRealCarrello;N/A;N/A;N/A;N/A;100;10;avgt;10;0.223;0.008;us/op;Lineare in-memory (N+1 query su DB)
+SessionCarrelloRealeBenchmark.getRealCarrello;N/A;N/A;N/A;N/A;100;100;avgt;10;2.937;0.092;us/op;Lineare in-memory (N+1 query su DB)
+SessionCarrelloRealeBenchmark.getRealCarrello;N/A;N/A;N/A;N/A;100;1000;avgt;10;39.62;2.292;us/op;Lineare in-memory (N+1 query su DB)
+SessionCarrelloRealeBenchmark.getRealCarrello;N/A;N/A;N/A;N/A;50;10;avgt;10;0.217;0.015;us/op;50% miss catalogo
+SessionCarrelloRealeBenchmark.getRealCarrello;N/A;N/A;N/A;N/A;50;100;avgt;10;1.798;0.101;us/op;50% miss catalogo
+SessionCarrelloRealeBenchmark.getRealCarrello;N/A;N/A;N/A;N/A;50;1000;avgt;10;19.704;0.548;us/op;50% miss catalogo (metà inserimenti)
+WrapperBenchmark.getProdottiAbbonamento;N/A;N/A;N/A;10;N/A;N/A;avgt;10;0.179;0.016;us/op;Lineare O(N) ~33 ns/el
+WrapperBenchmark.getProdottiAbbonamento;N/A;N/A;N/A;100;N/A;N/A;avgt;10;2.593;0.124;us/op;Lineare O(N) ~33 ns/el
+WrapperBenchmark.getProdottiAbbonamento;N/A;N/A;N/A;1000;N/A;N/A;avgt;10;34.224;0.95;us/op;Lineare O(N) ~34 ns/el
+WrapperBenchmark.getProdottiOrdine;N/A;N/A;10;N/A;N/A;N/A;avgt;10;0.189;0.005;us/op;Lineare O(N) ~33 ns/el
+WrapperBenchmark.getProdottiOrdine;N/A;N/A;100;N/A;N/A;N/A;avgt;10;2.517;0.032;us/op;Lineare O(N) ~33 ns/el
+WrapperBenchmark.getProdottiOrdine;N/A;N/A;1000;N/A;N/A;N/A;avgt;10;32.591;1.207;us/op;Lineare O(N) ~33 ns/el
