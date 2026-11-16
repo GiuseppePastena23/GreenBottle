@@ -1,6 +1,6 @@
 package it.unisa.greenbottle.benchmark;
 
-import it.unisa.greenbottle.controller.ordineControl.util.SessionCarrello;
+import it.unisa.greenbottle.controller.ordine.util.SessionCarrello;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -45,7 +45,7 @@ public class SessionCarrelloBenchmark {
      */
     @Setup(Level.Trial)
     public void setup() {
-      carrello = new SessionCarrello();
+      carrello = new SessionCarrello(null);
       for (long id = 1; id <= prodottiNelCarrello; id++) {
         carrello.addToCarrello(id, 1);
       }
@@ -71,7 +71,7 @@ public class SessionCarrelloBenchmark {
      */
     @Setup(Level.Invocation)
     public void setup() {
-      carrello = new SessionCarrello();
+      carrello = new SessionCarrello(null);
       for (long id = 1; id <= prodottiNelCarrello; id++) {
         carrello.addToCarrello(id, 1);
       }

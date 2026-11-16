@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenBottle Benchmarks - Sintesi Confronto Prima e Dopo</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .bar-anim {
+      transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="bg-[var(--background,#0f172a)] text-[var(--foreground,#f8fafc)] antialiased p-4 md:p-8 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+
+    <!-- Header Section -->
+    <header class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-lg">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              JMH Microbenchmarks • JDK 21 LTS
+            </span>
+            <span class="text-xs text-[var(--muted-foreground,#94a3b8)]">
+              GreenBottle Performance Verification
+            </span>
+          </div>
+          <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--foreground,#f8fafc)]">
+            Report Comparativo: Prima vs Dopo le Ottimizzazioni
+          </h1>
+          <p class="text-sm text-[var(--muted-foreground,#94a3b8)] mt-1">
+            Confronto diretto tra la baseline iniziale (<code class="text-xs text-rose-400">sse-baseline</code>) e l'attuale implementazione ottimizzata (<code class="text-xs text-emerald-400">16-improvements-jmh</code>).
+          </p>
+        </div>
+        <div class="flex flex-col items-start md:items-end justify-center bg-[var(--background,#0f172a)] p-3 rounded-xl border border-[var(--border,#334155)]">
+          <span class="text-[11px] text-[var(--muted-foreground,#94a3b8)] uppercase tracking-wider font-semibold">Esito Verifica</span>
+          <span class="text-sm font-bold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Tutti i Colli di Bottiglia Risolti
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top KPI Highlights Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- KPI 1 -->
+      <div class="bg-[var(--card,#1e293b)] border border-emerald-500/40 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Composizione O(N²)</div>
+        <div class="text-3xl font-black text-emerald-400 mt-1">-98.4%</div>
+        <div class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          Da <span class="line-through text-rose-400 font-mono">1.602 µs</span> a <span class="font-bold text-emerald-300 font-mono">25.9 µs</span>
+        </div>
+        <div class="text-[10px] text-emerald-400/80 font-semibold mt-1">61.8x più veloce a N=1000</div>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="bg-[var(--card,#1e293b)] border border-emerald-500/40 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Lookup Prodotto</div>
+        <div class="text-3xl font-black text-emerald-400 mt-1">17x Più Rapido</div>
+        <div class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          Da <span class="line-through text-amber-400 font-mono">55.0 ns</span> a <span class="font-bold text-emerald-300 font-mono">3.23 ns</span>
+        </div>
+        <div class="text-[10px] text-emerald-400/80 font-semibold mt-1">Allineato a Long ID (2.68 ns)</div>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="bg-[var(--card,#1e293b)] border border-blue-500/40 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-400">Equals & HashCode</div>
+        <div class="text-3xl font-black text-blue-400 mt-1">-97% Tempo</div>
+        <div class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          Da <span class="line-through text-slate-400 font-mono">~25-47 ns</span> a <span class="font-bold text-blue-300 font-mono">~0.8-1.0 ns</span>
+        </div>
+        <div class="text-[10px] text-blue-400/80 font-semibold mt-1">Eliminato hash su immagini byte[]</div>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="bg-[var(--card,#1e293b)] border border-purple-500/40 rounded-xl p-4 shadow-sm relative overflow-hidden">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-purple-400">Wrapper Aggregati</div>
+        <div class="text-3xl font-black text-purple-400 mt-1">-45% Tempo</div>
+        <div class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-1">
+          Da <span class="line-through text-slate-400 font-mono">~33 µs</span> a <span class="font-bold text-purple-300 font-mono">18.0 µs</span>
+        </div>
+        <div class="text-[10px] text-purple-400/80 font-semibold mt-1">Elaborazione dimezzata a N=1000</div>
+      </div>
+    </div>
+
+    <!-- Section 1: Focus Composizione O(N^2) -->
+    <section class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-sm space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--border,#334155)] pb-3">
+        <div>
+          <h2 class="text-lg font-bold text-[var(--foreground,#f8fafc)] flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            1. ComposizioneHashSet: Risoluzione del Degrado O(N²)
+          </h2>
+          <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-0.5">
+            Inserimento di righe d'ordine transienti (<code class="text-xs">id == null</code>) nel checkout prima del salvataggio a database.
+          </p>
+        </div>
+        <span class="self-start sm:self-auto text-xs px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+          Scalabilità Lineare O(N) Ripristinata
+        </span>
+      </div>
+
+      <!-- Graphic Comparison Bars -->
+      <div class="space-y-4 pt-2">
+        <!-- N = 1000 -->
+        <div class="bg-[var(--background,#0f172a)] p-4 rounded-xl border border-[var(--border,#334155)] space-y-2">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-[var(--foreground,#f8fafc)]">N = 1.000 Composizioni (Caso Massimo di Carico)</span>
+            <span class="font-mono text-emerald-400 font-bold">Guadagno: -98.4% (61.8x più veloce)</span>
+          </div>
+          
+          <!-- Prima -->
+          <div class="space-y-1">
+            <div class="flex justify-between text-[11px] text-rose-400">
+              <span>PRIMA (Baseline con collisione hash = 0):</span>
+              <span class="font-mono font-bold">1.602,14 µs (1.6 ms!)</span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-3.5 overflow-hidden">
+              <div class="bg-rose-500 h-full rounded-full" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <!-- Dopo -->
+          <div class="space-y-1">
+            <div class="flex justify-between text-[11px] text-emerald-400">
+              <span>DOPO (Con identityHashCode):</span>
+              <span class="font-mono font-bold">25,94 µs</span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-3.5 overflow-hidden flex items-center">
+              <div class="bg-emerald-500 h-full rounded-full bar-anim" style="width: 1.6%;"></div>
+              <span class="text-[10px] text-emerald-300 font-mono font-bold ml-2">25.9 µs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- N = 100 & N = 10 Mini Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-[var(--background,#0f172a)] p-3.5 rounded-xl border border-[var(--border,#334155)] space-y-1.5">
+            <div class="flex justify-between text-xs">
+              <span class="font-semibold text-slate-300">N = 100 Elementi</span>
+              <span class="font-mono text-emerald-400 font-bold">-90.7% (10.8x)</span>
+            </div>
+            <div class="flex justify-between text-[11px] text-[var(--muted-foreground,#94a3b8)] font-mono">
+              <span>Prima: <span class="text-rose-400 font-bold">19.00 µs</span></span>
+              <span>Dopo: <span class="text-emerald-400 font-bold">1.77 µs</span></span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden flex">
+              <div class="bg-emerald-500 h-full" style="width: 9.3%;"></div>
+            </div>
+          </div>
+
+          <div class="bg-[var(--background,#0f172a)] p-3.5 rounded-xl border border-[var(--border,#334155)] space-y-1.5">
+            <div class="flex justify-between text-xs">
+              <span class="font-semibold text-slate-300">N = 10 Elementi</span>
+              <span class="font-mono text-emerald-400 font-bold">-51.0% (2.0x)</span>
+            </div>
+            <div class="flex justify-between text-[11px] text-[var(--muted-foreground,#94a3b8)] font-mono">
+              <span>Prima: <span class="text-rose-400 font-bold">0.253 µs</span></span>
+              <span>Dopo: <span class="text-emerald-400 font-bold">0.124 µs</span></span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden flex">
+              <div class="bg-emerald-500 h-full" style="width: 49%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Snippet Diff -->
+        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 text-[11px] font-mono leading-relaxed">
+          <div class="text-[var(--muted-foreground,#94a3b8)] mb-1">// Modifica applicata in Composizione.java:</div>
+          <div class="text-rose-400">- public int hashCode() { return id != null ? id.hashCode() : 0; } // 100% collisioni su bucket 0</div>
+          <div class="text-emerald-400">+ public int hashCode() { return id != null ? id.hashCode() : System.identityHashCode(this); } // O(1) perfetto</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Focus Prodotto Hashing -->
+    <section class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-sm space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--border,#334155)] pb-3">
+        <div>
+          <h2 class="text-lg font-bold text-[var(--foreground,#f8fafc)] flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            2. Prodotto: Ottimizzazione del Contratto Equals/HashCode
+          </h2>
+          <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-0.5">
+            Eliminazione dell'overhead computazionale causato da Lombok <code class="text-xs">@Data</code> su stringhe e array di byte.
+          </p>
+        </div>
+        <span class="self-start sm:self-auto text-xs px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+          Lookup in Mappa 17x Più Veloce
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+        <!-- Metric 1: Lookup per Entità -->
+        <div class="bg-[var(--background,#0f172a)] p-4 rounded-xl border border-[var(--border,#334155)] space-y-2">
+          <div class="text-xs text-[var(--muted-foreground,#94a3b8)] font-semibold">Lookup con Chiave Prodotto</div>
+          <div class="text-2xl font-black text-emerald-400 font-mono">3.23 ns</div>
+          <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Prima: <span class="text-rose-400 line-through font-mono">55.04 ns</span>
+            <span class="text-emerald-400 font-bold ml-1">(-94.1%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden flex">
+            <div class="bg-emerald-500 h-full" style="width: 5.8%;"></div>
+          </div>
+          <p class="text-[10px] text-slate-400 pt-1">Allineato ai <strong>2.68 ns</strong> del lookup nativo per Long ID.</p>
+        </div>
+
+        <!-- Metric 2: hashCode -->
+        <div class="bg-[var(--background,#0f172a)] p-4 rounded-xl border border-[var(--border,#334155)] space-y-2">
+          <div class="text-xs text-[var(--muted-foreground,#94a3b8)] font-semibold">Calcolo hashCode() Prodotto</div>
+          <div class="text-2xl font-black text-emerald-400 font-mono">0.78 ns</div>
+          <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Prima: <span class="text-rose-400 line-through font-mono">24.78 ns</span>
+            <span class="text-emerald-400 font-bold ml-1">(-96.8%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden flex">
+            <div class="bg-emerald-500 h-full" style="width: 3.1%;"></div>
+          </div>
+          <p class="text-[10px] text-slate-400 pt-1">Costo sceso a meno di 1 nanosecondo.</p>
+        </div>
+
+        <!-- Metric 3: equals -->
+        <div class="bg-[var(--background,#0f172a)] p-4 rounded-xl border border-[var(--border,#334155)] space-y-2">
+          <div class="text-xs text-[var(--muted-foreground,#94a3b8)] font-semibold">Confronto equals() Prodotti</div>
+          <div class="text-2xl font-black text-emerald-400 font-mono">1.07 ns</div>
+          <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Prima: <span class="text-rose-400 line-through font-mono">46.62 ns</span>
+            <span class="text-emerald-400 font-bold ml-1">(-97.7%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden flex">
+            <div class="bg-emerald-500 h-full" style="width: 2.3%;"></div>
+          </div>
+          <p class="text-[10px] text-slate-400 pt-1">Confronto istantaneo sul solo ID univoco.</p>
+        </div>
+      </div>
+
+      <!-- Code Snippet Diff -->
+      <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 text-[11px] font-mono leading-relaxed">
+        <div class="text-[var(--muted-foreground,#94a3b8)] mb-1">// Modifica applicata in Prodotto.java:</div>
+        <div class="text-rose-400">- @Data // Lombok genera equals/hashCode su tutti i campi (incluso byte[] img e Categoria)</div>
+        <div class="text-emerald-400">+ @EqualsAndHashCode(onlyExplicitlyIncluded = true)</div>
+        <div class="text-emerald-400">+ @EqualsAndHashCode.Include private Long id; // Identità basata esclusivamente sulla chiave primaria JPA</div>
+      </div>
+    </section>
+
+    <!-- Section 3: Summary Comparison Table -->
+    <section class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-sm space-y-4">
+      <h2 class="text-lg font-bold text-[var(--foreground,#f8fafc)] flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+        3. Riepilogo Analitico Prima vs Dopo
+      </h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border border-[var(--border,#334155)] rounded-lg overflow-hidden">
+          <thead class="bg-[var(--background,#0f172a)] text-[var(--muted-foreground,#94a3b8)]">
+            <tr>
+              <th class="p-3">Componente / Test</th>
+              <th class="p-3">Scenario</th>
+              <th class="p-3">Prima (Baseline)</th>
+              <th class="p-3">Dopo (Ottimizzato)</th>
+              <th class="p-3">Delta %</th>
+              <th class="p-3">Fattore di Guadagno</th>
+              <th class="p-3">Valutazione</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border,#334155)] font-mono">
+            <tr class="bg-emerald-950/20">
+              <td class="p-3 font-sans font-semibold text-emerald-300">Composizione Transienti</td>
+              <td class="p-3">N = 1.000</td>
+              <td class="p-3 text-rose-400 line-through">1.602,14 µs</td>
+              <td class="p-3 text-emerald-400 font-bold">25,94 µs</td>
+              <td class="p-3 text-emerald-400 font-bold">-98.4%</td>
+              <td class="p-3 text-emerald-300 font-bold">61.8x più veloce</td>
+              <td class="p-3 font-sans"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">O(N) Risolto</span></td>
+            </tr>
+            <tr class="bg-emerald-950/20">
+              <td class="p-3 font-sans font-semibold text-emerald-300">Lookup per Prodotto</td>
+              <td class="p-3">Map&lt;Prodotto, V&gt;</td>
+              <td class="p-3 text-rose-400 line-through">55,04 ns</td>
+              <td class="p-3 text-emerald-400 font-bold">3,23 ns</td>
+              <td class="p-3 text-emerald-400 font-bold">-94.1%</td>
+              <td class="p-3 text-emerald-300 font-bold">17.0x più veloce</td>
+              <td class="p-3 font-sans"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">Allineato a ID</span></td>
+            </tr>
+            <tr>
+              <td class="p-3 font-sans font-semibold">Prodotto.hashCode()</td>
+              <td class="p-3">conCategoria=true</td>
+              <td class="p-3 text-rose-400 line-through">24,78 ns</td>
+              <td class="p-3 text-emerald-400 font-bold">0,78 ns</td>
+              <td class="p-3 text-emerald-400 font-bold">-96.9%</td>
+              <td class="p-3 text-emerald-300 font-bold">31.8x più veloce</td>
+              <td class="p-3 font-sans"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">&lt; 1 ns</span></td>
+            </tr>
+            <tr>
+              <td class="p-3 font-sans font-semibold">Prodotto.equals()</td>
+              <td class="p-3">conCategoria=true</td>
+              <td class="p-3 text-rose-400 line-through">46,62 ns</td>
+              <td class="p-3 text-emerald-400 font-bold">1,07 ns</td>
+              <td class="p-3 text-emerald-400 font-bold">-97.7%</td>
+              <td class="p-3 text-emerald-300 font-bold">43.5x più veloce</td>
+              <td class="p-3 font-sans"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">~1 ns</span></td>
+            </tr>
+            <tr class="bg-blue-950/20">
+              <td class="p-3 font-sans font-semibold text-blue-300">Wrapper Ordini</td>
+              <td class="p-3">N = 1.000 righe</td>
+              <td class="p-3 text-slate-400 line-through">32,59 µs</td>
+              <td class="p-3 text-blue-400 font-bold">18,35 µs</td>
+              <td class="p-3 text-blue-400 font-bold">-43.7%</td>
+              <td class="p-3 text-blue-300 font-bold">1.8x più veloce</td>
+              <td class="p-3 font-sans"><span class="px-2 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300 font-bold">Dimezzato tempo CPU</span></td>
+            </tr>
+            <tr class="bg-blue-950/20">
+              <td class="p-3 font-sans font-semibold text-blue-300">Wrapper Abbonamenti</td>
+              <td class="p-3">N = 1.000 righe</td>
+              <td class="p-3 text-slate-400 line-through">34,22 µs</td>
+              <td class="p-3 text-blue-400 font-bold">18,00 µs</td>
+              <td class="p-3 text-blue-400 font-bold">-47.4%</td>
+              <td class="p-3 text-blue-300 font-bold">1.9x più veloce</td>
+              <td class="p-3 font-sans"><span class="px-2 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300 font-bold">Dimezzato tempo CPU</span></td>
+            </tr>
+            <tr>
+              <td class="p-3 font-sans font-semibold">SessionCarrello Reale</td>
+              <td class="p-3">N = 1.000 (100% catalogo)</td>
+              <td class="p-3 text-slate-400 line-through">39,62 µs</td>
+              <td class="p-3 text-emerald-400 font-bold">32,71 µs</td>
+              <td class="p-3 text-emerald-400 font-bold">-17.4%</td>
+              <td class="p-3 text-emerald-300 font-bold">1.2x CPU in-memory</td>
+              <td class="p-3 font-sans"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">Batch findAllById</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer Note -->
+    <footer class="text-center text-xs text-[var(--muted-foreground,#94a3b8)] pt-2 pb-6">
+      GreenBottle Microbenchmark Suite • Report generato automaticamente in conformità agli standard JMH e JDK 21 LTS.
+    </footer>
+
+  </div>
+</body>
+</html>

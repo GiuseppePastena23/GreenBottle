@@ -1,15 +1,15 @@
 package it.unisa.greenbottle.benchmark;
 
-import it.unisa.greenbottle.controller.abbonamentoControl.util.AbbonamentoWrapper;
-import it.unisa.greenbottle.controller.ordineControl.util.OrdineWrapper;
-import it.unisa.greenbottle.storage.abbonamentoStorage.entity.Abbonamento;
-import it.unisa.greenbottle.storage.abbonamentoStorage.entity.Disposizione;
-import it.unisa.greenbottle.storage.catalogoStorage.entity.Prodotto;
-import it.unisa.greenbottle.storage.ordineStorage.entity.Composizione;
-import it.unisa.greenbottle.storage.ordineStorage.entity.Ordine;
+import it.unisa.greenbottle.controller.abbonamento.util.AbbonamentoWrapper;
+import it.unisa.greenbottle.controller.ordine.util.OrdineWrapper;
+import it.unisa.greenbottle.storage.abbonamento.entity.Abbonamento;
+import it.unisa.greenbottle.storage.abbonamento.entity.Disposizione;
+import it.unisa.greenbottle.storage.catalogo.entity.Prodotto;
+import it.unisa.greenbottle.storage.ordine.entity.Composizione;
+import it.unisa.greenbottle.storage.ordine.entity.Ordine;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -98,7 +98,7 @@ public class WrapperBenchmark {
    * @return la mappa prodotto-quantità dell'ordine
    */
   @Benchmark
-  public HashMap<Prodotto, Integer> getProdottiOrdine(StatoOrdine stato) {
+  public Map<Prodotto, Integer> getProdottiOrdine(StatoOrdine stato) {
     return stato.wrapper.getProdottiOrdine();
   }
 
@@ -109,7 +109,7 @@ public class WrapperBenchmark {
    * @return la mappa prodotto-quantità dell'abbonamento
    */
   @Benchmark
-  public HashMap<Prodotto, Integer> getProdottiAbbonamento(StatoAbbonamento stato) {
+  public Map<Prodotto, Integer> getProdottiAbbonamento(StatoAbbonamento stato) {
     return stato.wrapper.getProdottiAbbonamento();
   }
 }

@@ -1,6 +1,6 @@
 package it.unisa.greenbottle.benchmark;
 
-import it.unisa.greenbottle.controller.accessoControl.util.EncryptorUtil;
+import it.unisa.greenbottle.controller.accesso.util.EncryptorUtil;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -32,6 +32,9 @@ public class EncryptorUtilBenchmark {
   @State(Scope.Thread)
   public static class StatoTesto {
 
+    /** Istanza del servizio di crittografia. */
+    public EncryptorUtil encryptorUtil;
+
     /** Lunghezza in caratteri del testo di input. */
     @Param({"8", "64", "512"})
     public int lunghezzaTesto;
@@ -47,8 +50,9 @@ public class EncryptorUtilBenchmark {
      */
     @Setup
     public void setup() {
+      encryptorUtil = new EncryptorUtil("1234567890123456");
       testo = "a".repeat(lunghezzaTesto);
-      testoCifrato = EncryptorUtil.encrypt(testo);
+      testoCifrato = encryptorUtil.encrypt(testo);
     }
   }
 
@@ -60,7 +64,7 @@ public class EncryptorUtilBenchmark {
    */
   @Benchmark
   public String encrypt(StatoTesto stato) {
-    return EncryptorUtil.encrypt(stato.testo);
+    return stato.encryptorUtil.encrypt(stato.testo);
   }
 
   /**
@@ -71,6 +75,6 @@ public class EncryptorUtilBenchmark {
    */
   @Benchmark
   public String decrypt(StatoTesto stato) {
-    return EncryptorUtil.decrypt(stato.testoCifrato);
+    return stato.encryptorUtil.decrypt(stato.testoCifrato);
   }
 }

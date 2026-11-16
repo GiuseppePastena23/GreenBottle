@@ -1,6 +1,6 @@
 package it.unisa.greenbottle.benchmark;
 
-import it.unisa.greenbottle.controller.accessoControl.form.RegistrazioneForm;
+import it.unisa.greenbottle.controller.accesso.form.RegistrazioneForm;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
