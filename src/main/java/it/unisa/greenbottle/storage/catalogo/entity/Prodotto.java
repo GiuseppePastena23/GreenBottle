@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -22,6 +23,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+// Identità JPA: equals/hashCode sul solo id, senza hashing su img (byte[]) e categoria.
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(exclude = "img")
 // Campi valorizzati da JPA/Lombok: final non è applicabile.
 @SuppressWarnings("creedengo-java:GCI82")
@@ -29,6 +32,7 @@ public class Prodotto implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @EqualsAndHashCode.Include
   private Long id; // Identificativo univoco del prodotto
 
   @Column(nullable = false, length = 256)

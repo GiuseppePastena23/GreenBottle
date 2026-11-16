@@ -87,7 +87,7 @@ public class CreazioneOrdineController {
     final List<Indirizzo> indirizzi =
         indirizzoDao.findAllByCliente(cliente).orElseGet(ArrayList::new);
     model.addAttribute("indirizzi", indirizzi);
-    model.addAttribute("carrello", sessionCarrello.getRealCarrello());
+    model.addAttribute("carrello", carrello);
     return ORDINE_VIEW;
   }
 

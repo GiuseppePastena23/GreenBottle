@@ -68,6 +68,10 @@ Follow these steps:
 With Docker Compose, copy `.env.example` to `.env`, fill in the values and run
 `docker compose up -d --build`.
 
+## Running Benchmarks
+
+> java "-Djmh.ignoreLock=true" -jar target/greenbottle-0.0.1-SNAPSHOT-benchmarks.jar
+
 ## Built With
 
 * [Java](https://jdk.java.net/21/) - The programming language used for the back-end development.

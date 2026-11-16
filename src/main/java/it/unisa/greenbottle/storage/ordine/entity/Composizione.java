@@ -86,20 +86,40 @@ public class Composizione implements Serializable {
     this.ordine = ordine;
   }
 
+  /**
+   * Verifica l'uguaglianza tra due composizioni.
+   * Due composizioni già persistite sono uguali quando hanno lo stesso identificativo.
+   * Due composizioni transienti (id {@code null}) sono uguali solo se sono la stessa istanza:
+   * prima del salvataggio non esiste un identificativo di dominio, quindi righe distinte
+   * non devono mai risultare uguali.
+   *
+   * @param o oggetto da confrontare
+   * @return true se i due oggetti rappresentano la stessa composizione
+   */
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(final Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Composizione that = (Composizione) o;
+    final Composizione that = (Composizione) o;
     return id != null && id.equals(that.id); // Confronta per ID
   }
 
+  /**
+   * Calcola l'hash della composizione.
+   * Se l'entità è persistita si usa l'identificativo; se è ancora transiente si usa l'hash di
+   * identità dell'istanza. Restituire una costante (ad esempio {@code 0}) per le entità senza
+   * id provocherebbe collisioni totali: tutte le righe finirebbero nello stesso bucket di un
+   * {@code HashSet}, trasformando l'inserimento da O(N) a O(N^2) per via dei confronti a catena
+   * con {@link #equals(Object)}.
+   *
+   * @return l'hash della composizione
+   */
   @Override
   public int hashCode() {
-    return id != null ? id.hashCode() : 0; // Usa l'ID come base per hashCode
+    return id != null ? id.hashCode() : System.identityHashCode(this);
   }
 }
