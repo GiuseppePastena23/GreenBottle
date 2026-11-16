@@ -1,6 +1,6 @@
 PS C:\Users\pasquale\Documents\GitHub\Peppe\GreenBottle> .\mvnw.cmd clean package -Pbenchmarks -DskipTests
 
-PS C:\Users\pasquale\Documents\GitHub\Peppe\GreenBottle> java '-Djmh.ignoreLock=true' -jar 'target\greenbottle-0.0.1-SNAPSHOT-benchmarks.jar' '-l
+PS C:\Users\pasquale\Documents\GitHub\Peppe\GreenBottle> java '-Djmh.ignoreLock=true' -jar 'target\greenbottle-0.0.1-SNAPSHOT-benchmarks.jar' '-l'
 Benchmarks:
 it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniConId
 it.unisa.greenbottle.benchmark.ComposizioneHashSetBenchmark.inserisciComposizioniTransienti
